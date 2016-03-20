@@ -1,0 +1,290 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "helvetica", helvetica, sans-serif;
+}
+
+body {
+  overflow: none;
+}
+
+.relative-full {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.relative {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.absolute-full {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+.absolute {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+#everything-outer {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+#tr-stories {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 25vh;
+  width: 200px;
+  min-height: 300px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#bottom-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 20vh;
+  background-color: white;
+  box-shadow: 0 0 25px 25px white;
+}
+
+#jhumpa-background {
+  top: -125px;
+  width: 1280px;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+}
+
+#office-background {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+#typing-jhumpa {
+  position: absolute;
+  left: 307px;
+  top: 184px;
+  /*srouce images are 1600x1380*/
+  width: 640px;
+  height: 552px;
+}
+
+#typing-jhumpa-back, #typing-jhumpa-arm1, #typing-jhumpa-arm2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#typing-laptop {
+  height: 250px;
+  width: auto;
+  top: 450px;
+  left: 632px;
+  position: absolute;
+  /*animation: beingtyped 0.5s infinite;*/
+}
+
+#typing-jhumpa-arm1 {
+  transform: rotate(0deg);
+  transform-origin: 35% 35%;
+  transition: transform 0.2s;
+}
+
+#typing-jhumpa-arm2 {
+  transform: rotate(-2deg);
+  transform-origin: 35% 35%;
+  transition: transform 0.2s;
+}
+
+@keyframes type {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(-8deg);}
+  50% {transform: rotate(0deg);}
+  75% {transform: rotate(-8deg);}
+  100% {transform: rotate(0deg);}
+}
+
+@keyframes oppotype {
+  0% {transform: rotate(-2deg);}
+  25% {transform: rotate(0deg);}
+  50% {transform: rotate(-2deg);}
+  75% {transform: rotate(0deg);}
+  100% {transform: rotate(-2deg);}
+}
+
+/* example computer mashing */
+/*@keyframes beingtyped {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(-4deg);}
+  50% {transform: rotate(0deg);}
+  75% {transform: rotate(-4deg);}
+  100% {transform: rotate(0deg);}
+}*/
+
+#lower-table > tr > td {
+  padding: 10px;
+}
+
+#lower-table p {
+  font-family: "HelveticaNeue-UltraLight", "Helvetica Neue Ultra Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 200;
+}
+
+#lower-table {
+  height: 100%;
+  width: 100%;
+}
+
+.bottom-divider {
+  position: absolute;
+  left: 30%;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+#buttons-table {
+  position: absolute;
+  margin: 0;
+  left: 30%;
+  bottom: 0;
+  width: 70%;
+  top: calc(20vh - 55px);
+  height: 50px;
+}
+
+.option-button {
+  margin-top: 0px;
+  height: 5vh;
+  line-height: 5vh;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(200, 200, 200);
+  cursor: pointer;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s;
+}
+
+.option-button:hover {
+  background-color: rgb(175, 175, 175);
+}
+
+.option-button:active {
+  background-color: rgb(150, 150, 150);
+}
+
+.option-button > p {
+  vertical-align: middle;
+  color: white;
+  font-size: 3vh;
+  font-weight: 100;
+  font-family: "HelveticaNeue-UltraLight", "Helvetica Neue Ultra Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-align: center;
+  pointer-events: none;
+}
+
+#brain-outer {
+  line-height: 20vw
+}
+
+#jhumpa-brain {
+  position: absolute;
+  top: 0;
+  height: auto;
+  width: 45%;
+  left: 2.5%;
+  transform: rotate(0deg);
+  animation: stress1 1s infinite;
+}
+
+#anxiety-meter-outer {
+  position: relative;
+  top: calc(50% - 10px);
+  width: 45%;
+  left: 52.5%;
+  height: 20px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+#anxiety-meter-background {
+  height: 100%;
+  width: 100%;
+  background-color: green;
+}
+
+#anxiety-meter-overlay {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  background-color: grey;
+}
+
+@keyframes type {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(-8deg);}
+  50% {transform: rotate(0deg);}
+  75% {transform: rotate(-8deg);}
+  100% {transform: rotate(0deg);}
+}
+
+@keyframes oppotype {
+  0% {transform: rotate(-2deg);}
+  25% {transform: rotate(0deg);}
+  50% {transform: rotate(-2deg);}
+  75% {transform: rotate(0deg);}
+  100% {transform: rotate(-2deg);}
+}
+
+@keyframes stress1 {
+  0% {transform: rotate(-2deg);}
+  50% {transform: rotate(2deg);}
+  100% {transform: rotate(-2deg);}
+}
+
+@keyframes stress2 {
+  0% {transform: rotate(-4deg);}
+  50% {transform: rotate(4deg);}
+  100% {transform: rotate(-4deg);}
+}
+
+@keyframes stress3 {
+  0% {transform: rotate(-10deg);}
+  50% {transform: rotate(10deg);}
+  100% {transform: rotate(-10deg);}
+}
+
+@keyframes stress4 {
+  0% {transform: rotate(-50deg);}
+  50% {transform: rotate(50deg);}
+  100% {transform: rotate(-50deg);}
+}
+
+@keyframes stress5 {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
