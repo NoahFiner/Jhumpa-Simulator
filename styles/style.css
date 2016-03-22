@@ -85,9 +85,14 @@ body {
   position: absolute;
   left: 307px;
   top: 184px;
-  /*srouce images are 1600x1380*/
+  /*source images are 1600x1380*/
   width: 640px;
   height: 552px;
+  transform: rotate(0deg);
+}
+
+#typing-jhumpa.anxiety {
+  animation: anxiety 0.1s infinite linear;
 }
 
 #typing-jhumpa-back, #typing-jhumpa-arm1, #typing-jhumpa-arm2 {
@@ -177,15 +182,24 @@ body {
 
 .option-button {
   margin-top: 0px;
+  opacity: 1;
   height: 5vh;
   line-height: 5vh;
   width: 75%;
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(200, 200, 200);
+  pointer-events: auto;
   cursor: pointer;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  transition: all 0.25s;
+  transition: background-color 0.25s, margin-top 0.5s, opacity 0.5s;
+  -webkit-transition: background-color 0.25s, margin-top 0.5s, opacity 0.5s;
+}
+
+.option-button.hidden {
+  pointer-events: none;
+  margin-top: -50px;
+  opacity: 0;
 }
 
 .option-button:hover {
@@ -217,14 +231,29 @@ body {
   width: 45%;
   left: 2.5%;
   transform: rotate(0deg);
+}
+
+#jhumpa-brain.stress1 {
   animation: stress1 1s infinite;
+}
+#jhumpa-brain.stress2 {
+  animation: stress2 1s infinite;
+}
+#jhumpa-brain.stress3 {
+  animation: stress3 1s infinite;
+}
+#jhumpa-brain.stress4 {
+  animation: stress4 1s infinite;
+}
+#jhumpa-brain.stress5 {
+  animation: stress5 0.5s infinite linear;
 }
 
 #anxiety-meter-outer {
   position: relative;
   top: calc(50% - 10px);
   width: 45%;
-  left: 52.5%;
+  left: 50%;
   height: 20px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
 }
@@ -232,7 +261,13 @@ body {
 #anxiety-meter-background {
   height: 100%;
   width: 100%;
-  background-color: green;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4ddb4+0,777cff+0,78d363+50,fcff77+75,ffb677+87,ff0000+100 */
+  background: #b4ddb4; /* Old browsers */
+  background: -moz-linear-gradient(left,  #b4ddb4 0%, #777cff 0%, #78d363 50%, #fcff77 75%, #ffb677 87%, #ff0000 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #b4ddb4 0%,#777cff 0%,#78d363 50%,#fcff77 75%,#ffb677 87%,#ff0000 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #b4ddb4 0%,#777cff 0%,#78d363 50%,#fcff77 75%,#ffb677 87%,#ff0000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
+
 }
 
 #anxiety-meter-overlay {
@@ -242,6 +277,19 @@ body {
   right: 0;
   width: 50%;
   background-color: grey;
+  transition: width 0.25s;
+}
+
+#narration {
+  margin-top: -8vh;
+  margin-left: 10px;
+  opacity: 1;
+  transition: opacity 0.5s, margin-top 0.5s;
+}
+
+#narration.hidden {
+  opacity: 0 !important;
+  margin-top: -10vh;
 }
 
 @keyframes type {
@@ -287,4 +335,11 @@ body {
 @keyframes stress5 {
   0% {transform: rotate(0deg);}
   100% {transform: rotate(360deg);}
+}
+
+@keyframes anxiety {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(1deg);}
+  75% {transform: rotate(-1deg);}
+  100% {transform: rotate(0deg);}
 }
