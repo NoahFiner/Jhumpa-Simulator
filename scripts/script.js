@@ -3,6 +3,14 @@ var typingTimeout;
 var stress = 0;
 var stage = "hanging";
 var prevNarr = "";
+var writingTime = new Date(1995, 1, 1, 0, 0, 0, 0);
+var minutePos = 0;
+var hourPos = 0;
+
+//adds a minute to the time every minute played
+var playTimeInterval = setInterval(function() {
+  addTime(1);
+}, 60000);
 
 //a bunch of global timeouts
 var reminderTimeout, reminderStartTimeout;
@@ -58,6 +66,15 @@ var narrate = function(narration, textState, buttonState) {
   }
 };
 
+var addTime = function(minutes) {
+  writingTime.setTime(writingTime.getTime() + 60000*minutes);
+  minutePos += minutes*6;
+  hourPos += minutes/2;
+  $("#minute-hand").css("transform", "rotate("+minutePos+"deg)");
+  $("#hour-hand").css("transform", "rotate("+hourPos+"deg)");
+  $("#date").html("" + writingTime.getMonth() + "/" + writingTime.getDate() + "/" + writingTime.getFullYear());
+};
+
 var reminder = function() {
   clearTimeout(reminderTimeout);
   clearTimeout(reminderStartTimeout);
@@ -94,8 +111,12 @@ var setStage = function(whatStage) {
     $("#jhumpa-brain").removeClass().addClass("stress5");
     $("#typing-jhumpa").addClass("anxiety");
     setTimeout(function() {
-      setStage("hanging");
+      addTime(20160);
+      narrate("You waste two weeks on your anxiety attack.", true, false);
     }, 5000);
+    setTimeout(function() {
+      setStage("hanging");
+    }, 10000);
   }
   if(whatStage === "stress") {
     narrate("Uh oh! For some reason a core issue about your fears of marriage is beginning to return from your subconcious<br>Quick! Choose a way to repress it again!", true, true);
@@ -105,23 +126,27 @@ var setStage = function(whatStage) {
 
 var choiceTiming = function(choice) {
   if(stage === "stress") {
+    var wastedMinutesMultiplier = 1;
     if(stress >= 0 && stress <= 50) {
-      narrate("You "+choice+" your core issues. A little early though!", true, false);
+      narrate("You "+choice+" your core issues. Unfortunately, you wasted a lot of energy and time.", true, false);
     } else if(stress > 50 && stress <= 75) {
-      narrate("You "+choice+" your core issues. You could have survived a little longer, though.", true, false);
+      narrate("You "+choice+" your core issues. Unfortunately, you wasted a good bit of energy and time.", true, false);
     } else if(stress > 75 && stress <= 85) {
       narrate("You "+choice+" your core issues, right on time!", true, false);
-    } else if(stress > 75 && stress <= 05) {
-      narrate("You "+choice+" your core issues, but really late.", true, false);
+    } else if(stress > 75 && stress <= 99) {
+      narrate("You "+choice+" your core issues, but pretty late, taking up extra energy and time.", true, false);
     } else {
       setStage("anxiety");
     }
+    wastedMinutesMultiplier = (Math.abs(80-stress)*10);
     stress = 0;
     stage = "nothing";
     $("#jhumpa-brain").removeClass().addClass("stress1");
     setTimeout(function() {
+      var wastedMinutes = Math.floor(Math.random()*59*wastedMinutesMultiplier + 2);
+      addTime(wastedMinutes);
       setStage("hanging");
-    }, 2000);
+    }, 5000);
   }
 };
 
