@@ -6,6 +6,10 @@ var prevNarr = "";
 var writingTime = new Date(1995, 1, 1, 0, 0, 0, 0);
 var minutePos = 0;
 var hourPos = 0;
+var storyCompletion = 0;
+var stories = [];
+var lettersLeft = 0;
+var currStory;
 
 //adds a minute to the time every minute played
 var playTimeInterval = setInterval(function() {
@@ -36,6 +40,11 @@ var mainInterval = setInterval(function() {
     }
   }
 
+  //quicker time when writing stories
+  if(stage === "typing") {
+    addTime(Math.floor(Math.random()*7500));
+  }
+
   //typing animation
   if(isTyping === true) {
     $("#typing-jhumpa-arm1").css("animation", "type 0.5s infinite");
@@ -64,6 +73,50 @@ var narrate = function(narration, textState, buttonState) {
   } else {
     $("#den-button, #pro-button, #avo-button, #dis-button").addClass("hidden");
   }
+};
+
+//delete this
+var exampleStory = {title: "Example Story", description: "a magical turtle who flies around the world stressing about marriage idfk", storyLength: 250};
+//requirements: title, description, storyLength
+var writeStory = function(storyOb) {
+  clearTimeout(reminderStartTimeout);
+  clearTimeout(reminderTimeout);
+  stress = 25;
+  stage = "typing";
+  $("#typing-meter-outer").removeClass("hidden");
+  currStory = storyOb;
+  lettersLeft = storyOb.storyLength;
+  narrate("Genius! You'll write a story about "+storyOb.description+"<br>You'll call it \""+storyOb.title+"!\"", true, false);
+  setTimeout(function() {
+    narrate("", false, false);
+  }, 5000);
+};
+
+var finishStory = function() {
+  stage = "nothing";
+  narrate("Great work! You finish the short story in "+writingTime.getYear()+"!");
+  $("#typing-meter-outer").addClass("hidden");
+  stories.push(currStory);
+  $("#written-stories").append("<li class='story-li' id=\"story-"+stories.length+"\">\""+currStory.title+"\"</li>");
+
+  //i have to put this here because jquery is stupid
+  $(".story-li").on("click", function() {
+    var storyNum = $(this).attr("id").toString().charAt(6);
+    var clickedStory = stories[storyNum - 1];
+    if(stage === "hanging") {
+      stage = "reading";
+      clearTimeout(reminderTimeout);
+      clearTimeout(reminderStartTimeout);
+      narrate("Ahh a favorite! \""+clickedStory.title+",\" about "+clickedStory.description+".", true, false);
+      setTimeout(function() {
+        setStage("hanging");
+      }, 5000);
+    }
+  });
+
+  setTimeout(function() {
+    setStage("hanging");
+  }, 5000);
 };
 
 var addTime = function(minutes) {
@@ -106,17 +159,17 @@ var setStage = function(whatStage) {
     }, 5000);
   }
   if(whatStage === "anxiety") {
-    narrate("WHAT WERE YOU THINKING? THE REPRESSED FEELINGS RETURNED!<br>ANXIETY ATTACK! AAAAAHAAAAAHAHAHAHAH!", true, false);
+    narrate("WHAT WERE YOU THINKING? THE REPRESSED FEELINGS RETURNED!<br>ANXIETY ATTACK! AHAAAAAHAHAHAHAH!", true, false);
     stage = "anxiety";
     $("#jhumpa-brain").removeClass().addClass("stress5");
     $("#typing-jhumpa").addClass("anxiety");
     setTimeout(function() {
       addTime(20160);
       narrate("You waste two weeks on your anxiety attack.", true, false);
-    }, 5000);
+    }, 2500);
     setTimeout(function() {
       setStage("hanging");
-    }, 10000);
+    }, 5000);
   }
   if(whatStage === "stress") {
     narrate("Uh oh! For some reason a core issue about your fears of marriage is beginning to return from your subconcious<br>Quick! Choose a way to repress it again!", true, true);
@@ -168,7 +221,6 @@ $(document).ready(function() {
     choiceTiming("displaced");
   });
 
-
   $(document).keydown(function() {
     if(stage === "typing" || stage === "hanging") {
       clearTimeout(typingTimeout);
@@ -182,8 +234,18 @@ $(document).ready(function() {
       reminderStartTimeout = setTimeout(function() {
         reminder();
       }, 5000);
-      if(Math.random() < 0.05) {
-        setStage("stress");
+      if(stage === "typing") {
+        lettersLeft--;
+        stress = 25 - (Math.floor(lettersLeft/currStory.storyLength)*25);
+        $("#typing-meter-overlay").css("width", lettersLeft/currStory.storyLength*100+"%");
+        if(lettersLeft <= 0) {
+          finishStory();
+        }
+      }
+      else {
+        if(Math.random() < 0.05) {
+          setStage("stress");
+        }
       }
     }
   });
