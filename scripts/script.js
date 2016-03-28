@@ -3,13 +3,17 @@ var typingTimeout;
 var stress = 0;
 var stage = "hanging";
 var prevNarr = "";
-var writingTime = new Date(1995, 1, 1, 0, 0, 0, 0);
+var writingTime = new Date(1995, 0, 0, 0, 0, 0, 0);
 var minutePos = 0;
 var hourPos = 0;
 var storyCompletion = 0;
 var stories = [];
 var lettersLeft = 0;
 var currStory;
+var proActions = [];
+var avoActions = [];
+var disActions = [];
+var denActions = [];
 
 //adds a minute to the time every minute played
 var playTimeInterval = setInterval(function() {
@@ -17,7 +21,7 @@ var playTimeInterval = setInterval(function() {
 }, 60000);
 
 //a bunch of global timeouts
-var reminderTimeout, reminderStartTimeout;
+var reminderTimeout, reminderStartTimeout, talkTimeout, typingTalkTimeout;
 
 var mainInterval = setInterval(function() {
   //stress
@@ -54,6 +58,48 @@ var mainInterval = setInterval(function() {
   }
 }, 250);
 
+var Story = function(title, description, storyLength) {
+  this.title = title;
+  this.description = description;
+  this.storyLength = storyLength;
+};
+
+// rank should be 0-100, with 100 being the best
+var StoryAction = function(story, rank, customNarration="") {
+  this.story = story;
+  this.rank = rank;
+  this.customNarration = customNarration;
+};
+
+proActions[0] = new StoryAction(new Story("Really Bad Projection Story", "story description here", 500), 10, "You write an example story about stuff.");
+proActions[1] = new StoryAction(new Story("Sort of Bad Projection Story", "story description here", 500), 20, "You write an example story about stuff.");
+proActions[2] = new StoryAction(new Story("Bad Projection Story", "story description here", 500), 40, "You write an example story about stuff.");
+proActions[3] = new StoryAction(new Story("Ok Projection Story", "story description here", 500), 80, "You write an example story about stuff.");
+proActions[4] = new StoryAction(new Story("Good Projection Story", "story description here", 500), 90, "You write an example story about stuff.");
+proActions[5] = new StoryAction(new Story("Amazing Projection Story", "story description here", 500), 97, "You write an example story about stuff.");
+
+denActions[0] = new StoryAction(new Story("Really Bad Denial Story", "story description here", 500), 10, "You write an example story about stuff.");
+denActions[1] = new StoryAction(new Story("Sort of Bad Denial Story", "story description here", 500), 20, "You write an example story about stuff.");
+denActions[2] = new StoryAction(new Story("Bad Denial Story", "story description here", 500), 40, "You write an example story about stuff.");
+denActions[3] = new StoryAction(new Story("Ok Denial Story", "story description here", 500), 80, "You write an example story about stuff.");
+denActions[4] = new StoryAction(new Story("Good Denial Story", "story description here", 500), 90, "You write an example story about stuff.");
+denActions[5] = new StoryAction(new Story("Amazing Denial Story", "story description here", 500), 97, "You write an example story about stuff.");
+
+avoActions[0] = new StoryAction(new Story("Really Bad Avoidance Story", "story description here", 500), 10, "You write an example story about stuff.");
+avoActions[1] = new StoryAction(new Story("Sort of Bad Avoidance Story", "story description here", 500), 20, "You write an example story about stuff.");
+avoActions[2] = new StoryAction(new Story("Bad Avoidance Story", "story description here", 500), 40, "You write an example story about stuff.");
+avoActions[3] = new StoryAction(new Story("Ok Avoidance Story", "story description here", 500), 80, "You write an example story about stuff.");
+avoActions[4] = new StoryAction(new Story("Good Avoidance Story", "story description here", 500), 90, "You write an example story about stuff.");
+avoActions[5] = new StoryAction(new Story("Amazing Avoidance Story", "story description here", 500), 97, "You write an example story about stuff.");
+
+disActions[0] = new StoryAction(new Story("Really Bad Displacement Story", "story description here", 500), 10, "You write an example story about stuff.");
+disActions[1] = new StoryAction(new Story("Sort of Bad Displacement Story", "story description here", 500), 20, "You write an example story about stuff.");
+disActions[2] = new StoryAction(new Story("Bad Displacement Story", "story description here", 500), 40, "You write an example story about stuff.");
+disActions[3] = new StoryAction(new Story("Ok Displacement Story", "story description here", 500), 80, "You write an example story about stuff.");
+disActions[4] = new StoryAction(new Story("Good Displacement Story", "story description here", 500), 90, "You write an example story about stuff.");
+disActions[5] = new StoryAction(new Story("Amazing Displacement Story", "story description here", 500), 97, "You write an example story about stuff.");
+
+
 var narrate = function(narration, textState, buttonState) {
   $("#narration").html(narration);
   if(textState) {
@@ -75,18 +121,52 @@ var narrate = function(narration, textState, buttonState) {
   }
 };
 
+var talk = function(narration, talkState) {
+  clearTimeout(talkTimeout);
+  if(talkState) {
+    $("#speech-bubble").removeClass("hidden");
+    $("#speech-bubble > p").html(narration);
+  } else {
+    if(narration === "") {
+      talkTimeout = setTimeout(function() {$("#speech-bubble > p").html("");}, 250);
+    }
+    $("#speech-bubble").addClass("hidden");
+  }
+};
+
+var findClosestRank = function(val, searchArray) {
+  var bestDiff = 100;
+  var bestResult = 0;
+  console.log(searchArray);
+  for(var i = 0; i < searchArray.length; i++) {
+    if(Math.abs(searchArray[i].rank - val) < bestDiff) {
+      bestDiff = Math.abs(searchArray[i].rank - val);
+      bestResult = i;
+    }
+  }
+  return bestResult;
+};
+
 //delete this
 var exampleStory = {title: "Example Story", description: "a magical turtle who flies around the world stressing about marriage idfk", storyLength: 250};
 //requirements: title, description, storyLength
-var writeStory = function(storyOb) {
+var writeStory = function(storyOb, customNarration = "") {
+  console.log(storyOb);
   clearTimeout(reminderStartTimeout);
   clearTimeout(reminderTimeout);
+  clearTimeout(typingTalkTimeout);
+  $("#typing-meter-overlay").css("width", "100%");
   stress = 25;
   stage = "typing";
   $("#typing-meter-outer").removeClass("hidden");
   currStory = storyOb;
   lettersLeft = storyOb.storyLength;
-  narrate("Genius! You'll write a story about "+storyOb.description+"<br>You'll call it \""+storyOb.title+"!\"", true, false);
+  if(customNarration === "") {
+    narrate("Genius! You'll write a story about "+storyOb.description+"<br>You'll call it \""+storyOb.title+"!\"", true, false);
+  }
+  else {
+    narrate(customNarration, true, false);
+  }
   setTimeout(function() {
     narrate("", false, false);
   }, 5000);
@@ -94,7 +174,6 @@ var writeStory = function(storyOb) {
 
 var finishStory = function() {
   stage = "nothing";
-  narrate("Great work! You finish the short story in "+writingTime.getYear()+"!");
   $("#typing-meter-outer").addClass("hidden");
   stories.push(currStory);
   $("#written-stories").append("<li class='story-li' id=\"story-"+stories.length+"\">\""+currStory.title+"\"</li>");
@@ -114,6 +193,7 @@ var finishStory = function() {
     }
   });
 
+  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"!", true, false);
   setTimeout(function() {
     setStage("hanging");
   }, 5000);
@@ -125,7 +205,7 @@ var addTime = function(minutes) {
   hourPos += minutes/2;
   $("#minute-hand").css("transform", "rotate("+minutePos+"deg)");
   $("#hour-hand").css("transform", "rotate("+hourPos+"deg)");
-  $("#date").html("" + writingTime.getMonth() + "/" + writingTime.getDate() + "/" + writingTime.getFullYear());
+  $("#date").html("" + (writingTime.getMonth() + 1) + "/" + (writingTime.getDate() + 1) + "/" + writingTime.getFullYear());
 };
 
 var reminder = function() {
@@ -148,7 +228,9 @@ var reminder = function() {
 var setStage = function(whatStage) {
   clearTimeout(reminderTimeout);
   clearTimeout(reminderStartTimeout);
+  clearTimeout(typingTalkTimeout);
   if(whatStage === "hanging") {
+    talk("", false);
     narrate("", false, false);
     stage = "hanging";
     $("#typing-jhumpa").removeClass();
@@ -180,26 +262,45 @@ var setStage = function(whatStage) {
 var choiceTiming = function(choice) {
   if(stage === "stress") {
     var wastedMinutesMultiplier = 1;
-    if(stress >= 0 && stress <= 50) {
-      narrate("You "+choice+" your core issues. Unfortunately, you wasted a lot of energy and time.", true, false);
-    } else if(stress > 50 && stress <= 75) {
-      narrate("You "+choice+" your core issues. Unfortunately, you wasted a good bit of energy and time.", true, false);
-    } else if(stress > 75 && stress <= 85) {
-      narrate("You "+choice+" your core issues, right on time!", true, false);
-    } else if(stress > 75 && stress <= 99) {
-      narrate("You "+choice+" your core issues, but pretty late, taking up extra energy and time.", true, false);
-    } else {
+    // if(stress >= 0 && stress <= 50) {
+    //   narrate("You "+choice+" your core issues. Unfortunately, you wasted a lot of energy and time.", true, false);
+    // } else if(stress > 50 && stress <= 75) {
+    //   narrate("You "+choice+" your core issues. Unfortunately, you wasted a good bit of energy and time.", true, false);
+    // } else if(stress > 75 && stress <= 85) {
+    //   narrate("You "+choice+" your core issues, right on time!", true, false);
+    // } else if(stress > 75 && stress <= 99) {
+    //   narrate("You "+choice+" your core issues, but pretty late, taking up extra energy and time.", true, false);
+    // } else {
+    if(stress > 99) {
       setStage("anxiety");
+      return;
     }
+    var choiceActions;
+    switch(choice) {
+      case "projected":
+        choiceActions = proActions;
+        break;
+      case "denied":
+        choiceActions = denActions;
+        break;
+      case "displaced":
+        choiceActions = disActions;
+        break;
+      case "avoided":
+        choiceActions = avoActions;
+        break;
+    }
+    var keyAction = choiceActions[findClosestRank(100-Math.abs(80-stress), choiceActions)];
+    writeStory(keyAction.story, keyAction.customNarration);
     wastedMinutesMultiplier = (Math.abs(80-stress)*10);
     stress = 0;
-    stage = "nothing";
+    // stage = "nothing";
     $("#jhumpa-brain").removeClass().addClass("stress1");
-    setTimeout(function() {
-      var wastedMinutes = Math.floor(Math.random()*59*wastedMinutesMultiplier + 2);
-      addTime(wastedMinutes);
-      setStage("hanging");
-    }, 5000);
+    // setTimeout(function() {
+    //   var wastedMinutes = Math.floor(Math.random()*59*wastedMinutesMultiplier + 2);
+    //   addTime(wastedMinutes);
+    //   setStage("hanging");
+    // }, 5000);
   }
 };
 
@@ -235,6 +336,22 @@ $(document).ready(function() {
         reminder();
       }, 5000);
       if(stage === "typing") {
+        //also some fun narration
+        if(Math.random() < 0.01) {
+          clearTimeout(typingTalkTimeout);
+          typingTalkTimeout = setTimeout(function() {
+            talk("", false);
+          }, 3000);
+          var typingTalks = ["I feel the words flowing from my hands!",
+                            "This is the opposite of writer's block!",
+                            "I'm writing faster than ever before!",
+                            "Gotta type fast!",
+                            "I've been inspired and I feel fantastic!",
+                            "The ideas are coming too quickly! Type faster!",
+                            "I will be known as the fastest typer in town!"];
+          talk(typingTalks[Math.floor(Math.random()*typingTalks.length)], true);
+        }
+
         lettersLeft--;
         stress = 25 - (Math.floor(lettersLeft/currStory.storyLength)*25);
         $("#typing-meter-overlay").css("width", lettersLeft/currStory.storyLength*100+"%");
