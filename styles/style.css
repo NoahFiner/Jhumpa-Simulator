@@ -80,6 +80,7 @@ body {
   left: 0;
   width: 100vw;
   height: 20vh;
+  z-index: 1;
   background-color: white;
   box-shadow: 0 0 25px 25px white;
 }
@@ -132,6 +133,23 @@ body {
 }
 
 #office-background {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+#custom-background-outer {
+  z-index: 1;
+  margin-top: -20px;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+#custom-background-outer.hidden {
+  opacity: 0;
+}
+
+#custom-background {
   position: absolute;
   width: 100%;
   height: auto;
