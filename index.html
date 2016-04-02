@@ -12,6 +12,35 @@
     <div id="game" class="absolute-full">
       <div class="relative-full">
 
+        <div id="lose-game-outer" class="absolute-full hidden">
+          <div class="relative">
+            <img src="img/book.png" id="failure-book" class="hidden"/>
+            <h1 id="loss-message" class="hidden">You lost.</h1>
+            <p id="loss-desc" class="hidden">You took over 10 years to write <i>Intepreter of Maladies</i>. You'd be better off finding other ways to repress your marriage fears.</p>
+          </div>
+        </div>
+
+        <div id="end-game-outer" class="absolute-full hidden">
+          <div class="relative">
+            <h1 id="message" class="hidden">You did it!</h1>
+            <p id="timing">You finished <i>Interpreter of Maladies</i> in 7 years, 5 months, 4 days, 15 hours, and 12 minutes.</p>
+            <img src="img/book.png" id="book-prev" class="hidden"/>
+            <ol id="final-stories">
+              <p><strong>Index</strong></p>
+            </ol>
+            <div id="score-outer">
+              <h1 style="margin-top: 10px">Final rating: 0/5 stars</h1>
+              <div id="stars">
+                <img src="img/star.png" class="star"/>
+                <img src="img/star.png" class="star"/>
+                <img src="img/star.png" class="star"/>
+                <img src="img/star.png" class="star"/>
+                <img src="img/star.png" class="star"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="typing-meter-outer" class="meter-outer hidden">
           <div class="relative">
             <div id="typing-meter-background" class="meter-background"></div>

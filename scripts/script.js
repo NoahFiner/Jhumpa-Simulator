@@ -4,6 +4,7 @@ var stress = 0;
 var stage = "hanging";
 var prevNarr = "";
 var writingTime = new Date(1995, 0, 0, 0, 0, 0, 0);
+var maxTime = new Date(2005, 0, 0, 0, 0, 0, 0);
 var minutePos = 0;
 var hourPos = 0;
 var storyCompletion = 0;
@@ -93,34 +94,34 @@ var LoopAction = function(customNarration, image, time, rank) {
   };
 };
 
-// proActions[0] = new StoryAction(new Story("Really Bad Projection Story", "story description here", 500, 0), 10, "You write an example story about stuff.");
-proActions[1] = new StoryAction(new Story("Sort of Bad Projection Story", "story description here", 500, 1), 20, "You write an example story about stuff.");
-// proActions[2] = new StoryAction(new Story("Bad Projection Story", "story description here", 500, 2), 40, "You write an example story about stuff.");
-// proActions[3] = new StoryAction(new Story("Ok Projection Story", "story description here", 500, 3), 80, "You write an example story about stuff.");
-// proActions[4] = new StoryAction(new Story("Good Projection Story", "story description here", 500, 4), 90, "You write an example story about stuff.");
-// proActions[5] = new StoryAction(new Story("Amazing Projection Story", "story description here", 500, 5), 97, "You write an example story about stuff.");
+// proActions[0] = new StoryAction(new Story("Really Bad Projection Story", "story description here", 50,0), 10, "You write an example story about stuff.");
+proActions[1] = new StoryAction(new Story("Sort of Bad Projection Story", "story description here", 50,1), 20, "You write an example story about stuff.");
+// proActions[2] = new StoryAction(new Story("Bad Projection Story", "story description here", 50,2), 40, "You write an example story about stuff.");
+// proActions[3] = new StoryAction(new Story("Ok Projection Story", "story description here", 50,3), 80, "You write an example story about stuff.");
+// proActions[4] = new StoryAction(new Story("Good Projection Story", "story description here", 50,4), 90, "You write an example story about stuff.");
+// proActions[5] = new StoryAction(new Story("Amazing Projection Story", "story description here", 50,5), 97, "You write an example story about stuff.");
 proActions[0] = new LoopAction("You magically become one of these things", "backgrounds/geese.jpg", 60000, 25);
 
-denActions[0] = new StoryAction(new Story("Really Bad Denial Story", "story description here", 500, 0), 10, "You write an example story about stuff.");
-denActions[1] = new StoryAction(new Story("Sort of Bad Denial Story", "story description here", 500, 1), 20, "You write an example story about stuff.");
-denActions[2] = new StoryAction(new Story("Bad Denial Story", "story description here", 500, 2), 40, "You write an example story about stuff.");
-denActions[3] = new StoryAction(new Story("Ok Denial Story", "story description here", 500, 3), 80, "You write an example story about stuff.");
-denActions[4] = new StoryAction(new Story("Good Denial Story", "story description here", 500, 4), 90, "You write an example story about stuff.");
-denActions[5] = new StoryAction(new Story("Amazing Denial Story", "story description here", 500, 5), 97, "You write an example story about stuff.");
+denActions[0] = new StoryAction(new Story("Really Bad Denial Story", "story description here", 50,0), 10, "You write an example story about stuff.");
+denActions[1] = new StoryAction(new Story("Sort of Bad Denial Story", "story description here", 50,1), 20, "You write an example story about stuff.");
+denActions[2] = new StoryAction(new Story("Bad Denial Story", "story description here", 50,2), 40, "You write an example story about stuff.");
+denActions[3] = new StoryAction(new Story("Ok Denial Story", "story description here", 50,3), 80, "You write an example story about stuff.");
+denActions[4] = new StoryAction(new Story("Good Denial Story", "story description here", 50,4), 90, "You write an example story about stuff.");
+denActions[5] = new StoryAction(new Story("Amazing Denial Story", "story description here", 50,5), 97, "You write an example story about stuff.");
 
-avoActions[0] = new StoryAction(new Story("Really Bad Avoidance Story", "story description here", 500, 0), 10, "You write an example story about stuff.");
-avoActions[1] = new StoryAction(new Story("Sort of Bad Avoidance Story", "story description here", 500, 1), 20, "You write an example story about stuff.");
-avoActions[2] = new StoryAction(new Story("Bad Avoidance Story", "story description here", 500, 2), 40, "You write an example story about stuff.");
-avoActions[3] = new StoryAction(new Story("Ok Avoidance Story", "story description here", 500, 3), 80, "You write an example story about stuff.");
-avoActions[4] = new StoryAction(new Story("Good Avoidance Story", "story description here", 500, 4), 90, "You write an example story about stuff.");
-avoActions[5] = new StoryAction(new Story("Amazing Avoidance Story", "story description here", 500, 5), 97, "You write an example story about stuff.");
+avoActions[0] = new StoryAction(new Story("Really Bad Avoidance Story", "story description here", 50,0), 10, "You write an example story about stuff.");
+avoActions[1] = new StoryAction(new Story("Sort of Bad Avoidance Story", "story description here", 50,1), 20, "You write an example story about stuff.");
+avoActions[2] = new StoryAction(new Story("Bad Avoidance Story", "story description here", 50,2), 40, "You write an example story about stuff.");
+avoActions[3] = new StoryAction(new Story("Ok Avoidance Story", "story description here", 50,3), 80, "You write an example story about stuff.");
+avoActions[4] = new StoryAction(new Story("Good Avoidance Story", "story description here", 50,4), 90, "You write an example story about stuff.");
+avoActions[5] = new StoryAction(new Story("Amazing Avoidance Story", "story description here", 50,5), 97, "You write an example story about stuff.");
 
-disActions[0] = new StoryAction(new Story("Really Bad Displacement Story", "story description here", 500, 0), 10, "You write an example story about stuff.");
-disActions[1] = new StoryAction(new Story("Sort of Bad Displacement Story", "story description here", 500, 1), 20, "You write an example story about stuff.");
-disActions[2] = new StoryAction(new Story("Bad Displacement Story", "story description here", 500, 2), 40, "You write an example story about stuff.");
-disActions[3] = new StoryAction(new Story("Ok Displacement Story", "story description here", 500, 3), 80, "You write an example story about stuff.");
-disActions[4] = new StoryAction(new Story("Good Displacement Story", "story description here", 500, 4), 90, "You write an example story about stuff.");
-disActions[5] = new StoryAction(new Story("Amazing Displacement Story", "story description here", 500, 5), 97, "You write an example story about stuff.");
+disActions[0] = new StoryAction(new Story("Really Bad Displacement Story", "story description here", 50,0), 10, "You write an example story about stuff.");
+disActions[1] = new StoryAction(new Story("Sort of Bad Displacement Story", "story description here", 50,1), 20, "You write an example story about stuff.");
+disActions[2] = new StoryAction(new Story("Bad Displacement Story", "story description here", 50,2), 40, "You write an example story about stuff.");
+disActions[3] = new StoryAction(new Story("Ok Displacement Story", "story description here", 50,3), 80, "You write an example story about stuff.");
+disActions[4] = new StoryAction(new Story("Good Displacement Story", "story description here", 50,4), 90, "You write an example story about stuff.");
+disActions[5] = new StoryAction(new Story("Amazing Displacement Story", "story description here", 50,5), 97, "You write an example story about stuff.");
 
 
 var narrate = function(narration, textState, buttonState) {
@@ -198,7 +199,11 @@ var finishStory = function() {
   stage = "nothing";
   $("#typing-meter-outer").addClass("hidden");
   stories.push(currStory);
-  $("#written-stories").append("<li class='story-li' id=\"story-"+stories.length+"\">\""+currStory.title+"\"</li>");
+  $("#written-stories, #final-stories").append("<li class='story-li' id=\"story-"+stories.length+"\">\""+currStory.title+"\"</li>");
+
+  if(stories.length >= 9) {
+    endGame();
+  }
 
   //i have to put this here because jquery is stupid
   $(".story-li").on("click", function() {
@@ -228,6 +233,9 @@ var addTime = function(minutes) {
   $("#minute-hand").css("transform", "rotate("+minutePos+"deg)");
   $("#hour-hand").css("transform", "rotate("+hourPos+"deg)");
   $("#date").html("" + (writingTime.getMonth() + 1) + "/" + (writingTime.getDate() + 1) + "/" + writingTime.getFullYear());
+  if(writingTime.getTime() >= maxTime.getTime()) {
+    loseGame();
+  }
 };
 
 var reminder = function() {
@@ -279,6 +287,47 @@ var setStage = function(whatStage) {
     narrate("Uh oh! For some reason a core issue about your fears of marriage is beginning to return from your subconcious<br>Quick! Choose a way to repress it again!", true, true);
     stage = "stress";
   }
+};
+
+var Review = function(content, author) {
+  this.content = content;
+  this.author = author;
+  this.build = function() {
+    return "<p class='review'>\"<i>" + this.content + "</i>\" - " + this.author + "</p>";
+  };
+};
+
+var loseGame = function() {
+  $("#lose-game-outer, #loss-message, #loss-desc, #failure-book").removeClass("hidden");
+  stage = "loss";
+};
+
+var endGame = function() {
+  var startTime = new Date(1995, 0, 0, 0, 0, 0, 0);
+  var timeDiff = Math.abs(startTime - writingTime);
+  var yearDiff = Math.ceil(timeDiff / (1000 * 3600 * 24 * 365));
+  var dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) % 365;
+  var hourDiff = Math.ceil(timeDiff / (1000 * 3600)) % 24;
+  var minuteDiff = Math.ceil(timeDiff / (1000 * 60)) % 60;
+  $("#timing").html("You finished <i>Interpreter of Maladies</i> in "+yearDiff+" years, "+dayDiff+" days, "+hourDiff+" hours, and "+minuteDiff+" minutes.");
+  $("#book-prev, #message, #end-game-outer").removeClass("hidden");
+  var reviews = [new Review("You should make this book into a movie!", "Franklin Russel"),
+                new Review("Jhumpa Lahiri's first collection of short stories is a bit like a buffet table - lots of variety with a few recurring themes and motifs.", "Shankar Vedantam"),
+                new Review("No explanation is provided to justify the unlikely behavior. Good narrative demands that we be pulled along into an imaginary world, where characters act in interesting but consistent ways. A misplaced phrase or action jerks us out of the trance into wary suspicion.", "Shankar Vedantam"),
+                new Review("idk placeholder placeholder", "placeholder man")];
+  for(i = 0; i < 3; i++) {
+    $("#score-outer").append(reviews[Math.floor(Math.random()*reviews.length)].build());
+  }
+  var ratingSum = 0;
+  for(i = 0; i < stories.length; i++) {
+    ratingSum += stories[i].rating;
+  }
+  ratingSum = Math.round(ratingSum/stories.length);
+  $("#score-outer > h1").html("Final rating: "+Math.round(ratingSum)+"/5 stars");
+  for(i = 0; i <= ratingSum; i++) {
+    $(".star:nth-child("+i+")").addClass("active");
+  }
+  stage = "done";
 };
 
 var choiceTiming = function(choice) {
