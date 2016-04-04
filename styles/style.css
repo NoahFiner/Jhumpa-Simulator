@@ -256,6 +256,13 @@ body {
   height: 50px;
 }
 
+#start-button {
+  margin: 50px;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .option-button {
   margin-top: 0px;
   opacity: 1;
@@ -417,7 +424,7 @@ body {
   border-color: #ffffff transparent transparent transparent;
 }
 
-#end-game-outer, #lose-game-outer {
+#end-game-outer, #lose-game-outer, #start-game-outer {
   background-color: white;
   z-index: 10000;
   opacity: 1;
@@ -425,9 +432,41 @@ body {
   transition: opacity 0.5s;
 }
 
-#end-game-outer.hidden, #lose-game-outer.hidden {
+#end-game-outer.hidden, #lose-game-outer.hidden, #start-game-outer.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+#start-game-outer, #end-game-outer {
+  overflow: scroll;
+}
+
+#start-game-outer > div > p, #start-game-outer > div > h1 {
+  color: black;
+  font-family: "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 100;
+  text-align: center;
+  display: block;
+  margin: 50px;
+}
+
+#start-game-outer > div > h1 {
+  font-size: 8vw;
+}
+
+#start-game-outer > div > p {
+  font-size: 2vw;
+  font-weight: 300;
+}
+
+#start-game-outer > div > hr {
+  background-color: #ddd;
+  height: 1px;
+  outline: 0;
+  border: 0;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #book-prev {

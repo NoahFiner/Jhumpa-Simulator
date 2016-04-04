@@ -1,7 +1,8 @@
 var isTyping = false;
 var typingTimeout;
 var stress = 0;
-var stage = "hanging";
+var prevStress = stress;
+var stage = "instructions";
 var prevNarr = "";
 var writingTime = new Date(1995, 0, 0, 0, 0, 0, 0);
 var maxTime = new Date(2005, 0, 0, 0, 0, 0, 0);
@@ -179,7 +180,6 @@ var writeStory = function(storyOb, customNarration = "") {
   clearTimeout(reminderTimeout);
   clearTimeout(typingTalkTimeout);
   $("#typing-meter-overlay").css("width", "100%");
-  stress = 25;
   stage = "typing";
   $("#typing-meter-outer").removeClass("hidden");
   currStory = storyOb;
@@ -223,7 +223,7 @@ var finishStory = function() {
   narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"!", true, false);
   setTimeout(function() {
     setStage("hanging");
-  }, 5000);
+  }, 2500);
 };
 
 var addTime = function(minutes) {
@@ -363,9 +363,9 @@ var choiceTiming = function(choice) {
     }
     var keyAction = choiceActions[findClosestRank(100-Math.abs(80-stress), choiceActions)];
     if(keyAction.actionType === "s") {
+      prevStress = stress;
       writeStory(keyAction.story, keyAction.customNarration);
       wastedMinutesMultiplier = (Math.abs(80-stress)*10);
-      stress = 0;
       // stage = "nothing";
       $("#jhumpa-brain").removeClass().addClass("stress1");
       // setTimeout(function() {
@@ -429,7 +429,8 @@ $(document).ready(function() {
         }
 
         lettersLeft--;
-        stress = 25 - (Math.floor(lettersLeft/currStory.storyLength)*25);
+        stress = Math.floor((lettersLeft/currStory.storyLength)*prevStress);
+        console.log(stress);
         $("#typing-meter-overlay").css("width", lettersLeft/currStory.storyLength*100+"%");
         if(lettersLeft <= 0) {
           finishStory();
