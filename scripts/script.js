@@ -60,19 +60,19 @@ var mainInterval = setInterval(function() {
   }
 }, 250);
 
-var Story = function(title, description, storyLength, rating=3) {
+var Story = function(title, description, storyLength, rating) {
   this.title = title;
   this.description = description;
   this.storyLength = storyLength;
-  this.rating = rating;
+  this.rating = rating || 3;
 };
 
 // rank should be 0-100, with 100 being the best
-var StoryAction = function(story, rank, customNarration="") {
+var StoryAction = function(story, rank, customNarration) {
   this.actionType = "s";
   this.story = story;
   this.rank = rank;
-  this.customNarration = customNarration;
+  this.customNarration = customNarration || "";
 };
 
 var LoopAction = function(customNarration, image, time, rank) {
@@ -169,7 +169,8 @@ var findClosestRank = function(val, searchArray) {
 //delete this
 var exampleStory = {title: "Example Story", description: "a magical turtle who flies around the world stressing about marriage idfk", storyLength: 250};
 //requirements: title, description, storyLength
-var writeStory = function(storyOb, customNarration = "") {
+var writeStory = function(storyOb, customNarration) {
+  customNarration = customNarration || ""
   console.log(storyOb);
   clearTimeout(reminderStartTimeout);
   clearTimeout(reminderTimeout);

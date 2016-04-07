@@ -1,7 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+
 * {
   margin: 0;
   padding: 0;
-  font-family: "helvetica", helvetica, sans-serif;
+  font-family: "helvetica", "Open Sans",  helvetica, sans-serif;
 }
 
 body {
@@ -228,7 +230,7 @@ body {
 }
 
 #lower-table p {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", "Open Sans", sans-serif;
   font-weight: 300;
 }
 
@@ -304,7 +306,7 @@ body {
   color: white;
   font-size: 3vh;
   font-weight: 300;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   text-align: center;
   pointer-events: none;
 }
@@ -449,7 +451,7 @@ body {
 
 #start-game-outer > div > p, #start-game-outer > div > h1 {
   color: black;
-  font-family: "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 100;
   text-align: center;
   display: block;
@@ -490,7 +492,7 @@ body {
 
 #loss-message {
   color: black;
-  font-family: "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 100;
   position: absolute;
   font-size: 8vw;
@@ -504,7 +506,7 @@ body {
 
 #loss-desc {
   color: black;
-  font-family: "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   position: absolute;
   font-size: 2vw;
@@ -542,7 +544,7 @@ body {
 
 #message {
   color: black;
-  font-family: "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 100;
   position: absolute;
   font-size: 7vw;
@@ -560,7 +562,7 @@ body {
 
 #timing {
   color: black;
-  font-family: "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", "HelveticaNeue-UltraLight, HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   position: absolute;
   font-size: 2vw;
