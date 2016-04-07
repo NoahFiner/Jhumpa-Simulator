@@ -11,6 +11,7 @@ var hourPos = 0;
 var storyCompletion = 0;
 var stories = [];
 var lettersLeft = 0;
+var starsRemoved = 0;
 var currStory;
 var proActions = [];
 var avoActions = [];
@@ -170,7 +171,7 @@ var findClosestRank = function(val, searchArray) {
 var exampleStory = {title: "Example Story", description: "a magical turtle who flies around the world stressing about marriage idfk", storyLength: 250};
 //requirements: title, description, storyLength
 var writeStory = function(storyOb, customNarration) {
-  customNarration = customNarration || ""
+  customNarration = customNarration || "";
   console.log(storyOb);
   clearTimeout(reminderStartTimeout);
   clearTimeout(reminderTimeout);
@@ -272,8 +273,9 @@ var setStage = function(whatStage) {
     $("#jhumpa-brain").removeClass().addClass("stress5");
     $("#typing-jhumpa").addClass("anxiety");
     setTimeout(function() {
-      addTime(20160);
-      narrate("You waste two weeks on your anxiety attack.", true, false);
+      addTime(20160*30);
+      narrate("You waste two months on your anxiety attack. This will probably affect your writing in the future.", true, false);
+      starsRemoved++;
     }, 2500);
     setTimeout(function() {
       setStage("hanging");
@@ -318,10 +320,13 @@ var endGame = function() {
   for(i = 0; i < stories.length; i++) {
     ratingSum += stories[i].rating;
   }
-  ratingSum = Math.round(ratingSum/stories.length);
+  ratingSum = Math.round((ratingSum - starsRemoved)/stories.length);
   $("#score-outer > h1").html("Final rating: "+Math.round(ratingSum)+"/5 stars");
   for(i = 0; i <= ratingSum; i++) {
     $(".star:nth-child("+i+")").addClass("active");
+  }
+  if(ratingSum >= 4) {
+    $("#pulitzer").removeClass("hidden");
   }
   stage = "done";
 };
@@ -362,13 +367,13 @@ var choiceTiming = function(choice) {
       $("#"+choice.substr(0, 3)+"-button").addClass("disabled");
     }
 
-    var keyIndex = findClosestRank(100-Math.abs(80-stress), choiceActions);
+    var keyIndex = findClosestRank(100-Math.abs(100-stress), choiceActions);
     var keyAction = choiceActions[keyIndex];
     choiceActions.splice(keyIndex, 1);
     if(keyAction.actionType === "s") {
       prevStress = stress;
       writeStory(keyAction.story, keyAction.customNarration);
-      wastedMinutesMultiplier = (Math.abs(80-stress)*10);
+      wastedMinutesMultiplier = (Math.abs(100-stress)*10);
       // stage = "nothing";
       $("#jhumpa-brain").removeClass().addClass("stress1");
       // setTimeout(function() {
