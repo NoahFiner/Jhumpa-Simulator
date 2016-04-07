@@ -285,6 +285,12 @@ body {
   opacity: 0;
 }
 
+.option-button.disabled {
+  background-color: rgb(230, 230, 230);
+  box-shadow: 0;
+  pointer-events: none;
+}
+
 .option-button:hover {
   background-color: rgb(175, 175, 175);
 }

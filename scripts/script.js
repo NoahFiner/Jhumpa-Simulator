@@ -117,12 +117,7 @@ avoActions[3] = new StoryAction(new Story("Ok Avoidance Story", "story descripti
 avoActions[4] = new StoryAction(new Story("Good Avoidance Story", "story description here", 50,4), 90, "You write an example story about stuff.");
 avoActions[5] = new StoryAction(new Story("Amazing Avoidance Story", "story description here", 50,5), 97, "You write an example story about stuff.");
 
-disActions[0] = new StoryAction(new Story("Really Bad Displacement Story", "story description here", 50,0), 10, "You write an example story about stuff.");
-disActions[1] = new StoryAction(new Story("Sort of Bad Displacement Story", "story description here", 50,1), 20, "You write an example story about stuff.");
-disActions[2] = new StoryAction(new Story("Bad Displacement Story", "story description here", 50,2), 40, "You write an example story about stuff.");
-disActions[3] = new StoryAction(new Story("Ok Displacement Story", "story description here", 50,3), 80, "You write an example story about stuff.");
-disActions[4] = new StoryAction(new Story("Good Displacement Story", "story description here", 50,4), 90, "You write an example story about stuff.");
-disActions[5] = new StoryAction(new Story("Amazing Displacement Story", "story description here", 50,5), 97, "You write an example story about stuff.");
+disActions[0] = new StoryAction(new Story("The Treatment of Bibi Haldar", "Bibi Haldar, an ugly Indian single young lady, searching for a man who could marry her due to Indian pressures. She unfortunately fails.", 25), 85, "You displace your fears of marriage on Indian culture pressuring you too much.");
 
 
 var narrate = function(narration, textState, buttonState) {
@@ -220,10 +215,10 @@ var finishStory = function() {
     }
   });
 
-  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"!", true, false);
+  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"! It's about "+currStory.description+"", true, false);
   setTimeout(function() {
     setStage("hanging");
-  }, 2500);
+  }, (4000 + currStory.description.length/60*1000));
 };
 
 var addTime = function(minutes) {
@@ -361,7 +356,14 @@ var choiceTiming = function(choice) {
         choiceActions = avoActions;
         break;
     }
-    var keyAction = choiceActions[findClosestRank(100-Math.abs(80-stress), choiceActions)];
+    if(choiceActions.length === 1) {
+      console.log(choice.substr(0, 3));
+      $("#"+choice.substr(0, 3)+"-button").addClass("disabled");
+    }
+
+    var keyIndex = findClosestRank(100-Math.abs(80-stress), choiceActions);
+    var keyAction = choiceActions[keyIndex];
+    choiceActions.splice(keyIndex, 1);
     if(keyAction.actionType === "s") {
       prevStress = stress;
       writeStory(keyAction.story, keyAction.customNarration);
