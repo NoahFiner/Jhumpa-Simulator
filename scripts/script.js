@@ -111,14 +111,14 @@ denActions[3] = new StoryAction(new Story("Ok Denial Story", "story description 
 denActions[4] = new StoryAction(new Story("Good Denial Story", "story description here", 50,4), 90, "You write an example story about stuff.");
 denActions[5] = new StoryAction(new Story("Amazing Denial Story", "story description here", 50,5), 97, "You write an example story about stuff.");
 
-avoActions[0] = new StoryAction(new Story("Really Bad Avoidance Story", "story description here", 50,0), 10, "You write an example story about stuff.");
-avoActions[1] = new StoryAction(new Story("Sort of Bad Avoidance Story", "story description here", 50,1), 20, "You write an example story about stuff.");
-avoActions[2] = new StoryAction(new Story("Bad Avoidance Story", "story description here", 50,2), 40, "You write an example story about stuff.");
-avoActions[3] = new StoryAction(new Story("Ok Avoidance Story", "story description here", 50,3), 80, "You write an example story about stuff.");
-avoActions[4] = new StoryAction(new Story("Good Avoidance Story", "story description here", 50,4), 90, "You write an example story about stuff.");
-avoActions[5] = new StoryAction(new Story("Amazing Avoidance Story", "story description here", 50,5), 97, "You write an example story about stuff.");
+avoActions[0] = new StoryAction(new Story("Rice", "your father's stragies for cooking rice. Previously published in the New Yorker, why not put it in <i>Intepreter of Maladies</i>?", 500, 2), 10, "You avoid your fears of marriage and write about rice.");
+avoActions[1] = new StoryAction(new Story("The Long Way Home", "yourself learning how to cook Indian food by watching your parents as a child.", 400, 2), 15, "You avoid your fears of marriage by writing about how you learned to cook food.");
+avoActions[2] = new LoopAction("You avoid your fears of marriage and go on a vacation.", "backgrounds/vacation.jpg", 90000, 50);
+avoActions[3] = new LoopAction("You avoid your fears of marriage and go eat some food.", "backgrounds/food.jpg", 1440, 75);
+avoActions[4] = new LoopAction("You avoid your fears of marriage by contemplating if you should just be a reporter again.", "backgrounds/contemplation.jpg", 45000, 20);
 
-disActions[0] = new StoryAction(new Story("The Treatment of Bibi Haldar", "Bibi Haldar, an ugly Indian single young lady, searching for a man who could marry her due to Indian pressures. She unfortunately fails.", 25), 85, "You displace your fears of marriage on Indian culture pressuring you too much.");
+disActions[0] = new StoryAction(new Story("The Treatment of Bibi Haldar", "Bibi Haldar, an ugly Indian single young lady, searching for a man who could marry her due to Indian pressures. She unfortunately fails.", 250, 5), 85, "You displace your fears of marriage on Indian culture pressuring you too much.");
+disActions[1] = new StoryAction(new Story("The Third and Final Continent", "an Indian immigrant works at MIT and has a brief connection with his incredibly old landlord until his new wife arrives. When his wife arrives, though, it's very awkward.", 250, 5), 95, "You displace your fears of marriage on Indian culture and your parents pressuring you too much.");
 
 
 var narrate = function(narration, textState, buttonState) {
@@ -187,12 +187,11 @@ var writeStory = function(storyOb, customNarration) {
   else {
     narrate(customNarration, true, false);
   }
-  setTimeout(function() {
-    narrate("", false, false);
-  }, 5000);
 };
 
 var finishStory = function() {
+  clearTimeout(reminderTimeout);
+  clearTimeout(reminderStartTimeout);
   stage = "nothing";
   $("#typing-meter-outer").addClass("hidden");
   stories.push(currStory);
@@ -217,7 +216,7 @@ var finishStory = function() {
     }
   });
 
-  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"! It's about "+currStory.description+"", true, false);
+  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"!<br><br>It's about "+currStory.description+"", true, false);
   setTimeout(function() {
     setStage("hanging");
   }, (4000 + currStory.description.length/60*1000));
