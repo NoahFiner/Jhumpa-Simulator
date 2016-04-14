@@ -96,32 +96,29 @@ var LoopAction = function(customNarration, image, time, rank) {
   };
 };
 
-// proActions[0] = new StoryAction(new Story("Really Bad Projection Story", "story description here", 50,0), 10, "You write an example story about stuff.");
-proActions[1] = new StoryAction(new Story("Sort of Bad Projection Story", "story description here", 50,1), 20, "You write an example story about stuff.");
-// proActions[2] = new StoryAction(new Story("Bad Projection Story", "story description here", 50,2), 40, "You write an example story about stuff.");
-// proActions[3] = new StoryAction(new Story("Ok Projection Story", "story description here", 50,3), 80, "You write an example story about stuff.");
-// proActions[4] = new StoryAction(new Story("Good Projection Story", "story description here", 50,4), 90, "You write an example story about stuff.");
-// proActions[5] = new StoryAction(new Story("Amazing Projection Story", "story description here", 50,5), 97, "You write an example story about stuff.");
-proActions[0] = new LoopAction("You magically become one of these things", "backgrounds/geese.jpg", 60000, 25);
+proActions[0] = new StoryAction(new Story("A Temporary Matter", "an Indian couple, separated by the death of their child, get together by telling secrets until everything falls apart", 250, 5), 95, "You project your fear of losing a loved one if you become too attached, inspired by your ignorant parents, onto characters in one of your short stories who lose a child and have a fear of intimacy.");
+proActions[1] = new StoryAction(new Story("Mr. Pirzada Came to Dine", "Mr. Pirzada, a Pakistani, visiting the young protagonist's house to hope that the rest of his family, stuck in Pakistan, are okay", 300, 5), 94, "You project your fear of losing your family, like your parents ignored you and you 'lost' them, onto a character almost loses his entire family.");
+proActions[2] = new StoryAction(new Story("Sexy", "a woman participates in an affair with another man who calls her 'sexy,' while her friend, at the same time, has a cousin going through a harsh divorce", 300, 4), 85, "You project your fear of intimacy, sparked by your parents ignoring you despite your love, onto a character in a short story.");
+proActions[3] = new StoryAction(new Story("The Blessed House", "a successful Indian man's wife finds dozens of Christian symbols in his house, which he doesn't like due to how he wants to look proffessional. But the wife insists on keeping them up, and during a party, everyone except the protagonist, searches the house to find more", 500, 5), 93, "You project your fear of your partner not giving you enough time to write onto a character whose wife refuses to do what he wants.");
+proActions[4] = new StoryAction(new Story("Mrs Sen's", "a young protagonist is babysat by an Indian housewife, who feels alone and refuses to drive or go into society", 300, 4), 90, "You project your fear of being an outsider, inspired by your childhood outside of India and constantly moving, onto a character in a short story.");
+proActions[5] = new StoryAction(new Story("The Rejected Dog", "a dog is left as a stray in India and ignored by everyone. This short story follows its travels", 1000, 0), 15, "You project your fear of eternal loneliness onto a story about a rejected dog.");
+proActions[6] = new StoryAction(new Story("In Altre Parole", "an Indian love affair, but written originally in Italian", 1000, 2), 35, "You project your fear of intimacy onto a character in a love affair, but you also decide to write the book in Italian.");
 
-denActions[0] = new StoryAction(new Story("Really Bad Denial Story", "story description here", 50,0), 10, "You write an example story about stuff.");
-denActions[1] = new StoryAction(new Story("Sort of Bad Denial Story", "story description here", 50,1), 20, "You write an example story about stuff.");
-denActions[2] = new StoryAction(new Story("Bad Denial Story", "story description here", 50,2), 40, "You write an example story about stuff.");
-denActions[3] = new StoryAction(new Story("Ok Denial Story", "story description here", 50,3), 80, "You write an example story about stuff.");
-denActions[4] = new StoryAction(new Story("Good Denial Story", "story description here", 50,4), 90, "You write an example story about stuff.");
-denActions[5] = new StoryAction(new Story("Amazing Denial Story", "story description here", 50,5), 97, "You write an example story about stuff.");
+denActions[0] = new StoryAction(new Story("A Study on the Renaissance", "the renaissance using research from your degree in it.", 2000 ,0), 10, "You deny that anything's wrong and go on with life, writing about the renaissance.");
 
 avoActions[0] = new StoryAction(new Story("Rice", "your father's stragies for cooking rice. Previously published in the New Yorker, why not put it in <i>Intepreter of Maladies</i>?", 500, 2), 10, "You avoid your fears of marriage and write about rice.");
 avoActions[1] = new StoryAction(new Story("The Long Way Home", "yourself learning how to cook Indian food by watching your parents as a child.", 400, 2), 15, "You avoid your fears of marriage by writing about how you learned to cook food.");
-avoActions[2] = new LoopAction("You avoid your fears of marriage and go on a vacation.", "backgrounds/vacation.jpg", 90000, 50);
-avoActions[3] = new LoopAction("You avoid your fears of marriage and go eat some food.", "backgrounds/food.jpg", 1440, 75);
-avoActions[4] = new LoopAction("You avoid your fears of marriage by contemplating if you should just be a reporter again.", "backgrounds/contemplation.jpg", 45000, 20);
+avoActions[2] = new StoryAction(new Story("Teach Yourself Italian", "yourself learning Italian.", 600, 1), 30, "You avoid your fears of marriage by writing about learning Italian.");
+avoActions[3] = new LoopAction("You avoid your fears of marriage and go on a vacation.", "backgrounds/vacation.jpg", 90000, 50);
+avoActions[4] = new LoopAction("You avoid your fears of marriage and go eat some food.", "backgrounds/food.jpg", 1440, 75);
+avoActions[5] = new LoopAction("You avoid your fears of marriage by contemplating if you should just be a reporter again.", "backgrounds/contemplation.jpg", 45000, 20);
 
 disActions[0] = new StoryAction(new Story("The Treatment of Bibi Haldar", "Bibi Haldar, an ugly Indian single young lady, searching for a man who could marry her due to Indian pressures. She unfortunately fails.", 250, 5), 85, "You displace your fears of marriage on Indian culture pressuring you too much.");
 disActions[1] = new StoryAction(new Story("The Third and Final Continent", "an Indian immigrant works at MIT and has a brief connection with his incredibly old landlord until his new wife arrives. When his wife arrives, though, it's very awkward.", 250, 5), 95, "You displace your fears of marriage on Indian culture and your parents pressuring you too much.");
 disActions[4] = new StoryAction(new Story("The Dog of Death", "people that have far too strong emotional connections to their dogs manipulating their real emotions and feelings toward loved ones.", 1000, 1), 40, "You displace your fears of marriage on your dog.");
-disActions[2] = new LoopAction("You displace your fears of marriage and blame your parents for not caring enough for you. You call them for a few days.", "backgrounds/parents.jpg", 10000, 20);
-disActions[3] = new LoopAction("You displace your fears of marriage on your food for some reason.", "backgrounds/food.jpg", 10000, 5);
+disActions[3] = new LoopAction("You displace your fears of marriage and blame your current boyfriend for making you not want to do marriage. You fight with him for a little.", "backgrounds/boyfriend.jpg", 20000, 30);
+disActions[4] = new LoopAction("You displace your fears of marriage and blame your parents for not caring enough for you. You call them for a few days.", "backgrounds/parents.jpg", 10000, 20);
+disActions[2] = new LoopAction("You displace your fears of marriage on your food for some reason.", "backgrounds/food.jpg", 10000, 5);
 
 
 var narrate = function(narration, textState, buttonState) {
@@ -245,9 +242,9 @@ var reminder = function() {
   }, 7500);
   var reminders = ["You should probably get back to writing that book...",
                   "<i>Interpreter of Maladies</i> isn't going to write itself...",
-                  "Now that we have that core issue dealt with, let's get back to writing.",
+                  "Let's get to writing!",
                   "What are you waiting for? Let's write some short stories!",
-                  "You should probably write some stuff, those feelings shouldn't come back soon..."];
+                  "You should probably write some stuff..."];
   narrate(reminders[Math.floor(Math.random()*reminders.length)], true, false);
   reminderTimeout = setTimeout(function() {
     narrate("", false, false);
