@@ -119,6 +119,9 @@ avoActions[4] = new LoopAction("You avoid your fears of marriage by contemplatin
 
 disActions[0] = new StoryAction(new Story("The Treatment of Bibi Haldar", "Bibi Haldar, an ugly Indian single young lady, searching for a man who could marry her due to Indian pressures. She unfortunately fails.", 250, 5), 85, "You displace your fears of marriage on Indian culture pressuring you too much.");
 disActions[1] = new StoryAction(new Story("The Third and Final Continent", "an Indian immigrant works at MIT and has a brief connection with his incredibly old landlord until his new wife arrives. When his wife arrives, though, it's very awkward.", 250, 5), 95, "You displace your fears of marriage on Indian culture and your parents pressuring you too much.");
+disActions[4] = new StoryAction(new Story("The Dog of Death", "people that have far too strong emotional connections to their dogs manipulating their real emotions and feelings toward loved ones.", 1000, 1), 40, "You displace your fears of marriage on your dog.");
+disActions[2] = new LoopAction("You displace your fears of marriage and blame your parents for not caring enough for you. You call them for a few days.", "backgrounds/parents.jpg", 10000, 20);
+disActions[3] = new LoopAction("You displace your fears of marriage on your food for some reason.", "backgrounds/food.jpg", 10000, 5);
 
 
 var narrate = function(narration, textState, buttonState) {
