@@ -66,6 +66,9 @@ var Story = function(title, description, storyLength, rating, timeMultiplier) {
   this.description = description;
   this.storyLength = storyLength;
   this.rating = rating || 3;
+  if(rating === 0) {
+    this.rating = 0;
+  }
   this.timeMultiplier = timeMultiplier || 1;
 };
 
@@ -102,7 +105,7 @@ proActions[1] = new StoryAction(new Story("When Mr. Pirzada Came to Dine", "Mr. 
 proActions[2] = new StoryAction(new Story("Sexy", "a woman participating in an affair with another man who calls her 'sexy,' while her friend, at the same time, has a cousin going through a harsh divorce.", 300, 4, 2), 85, "You project your fear of intimacy, sparked by your parents ignoring you despite your love, onto a character in a short story.");
 proActions[3] = new StoryAction(new Story("This Blessed House", "a successful Indian man's wife finding dozens of Christian symbols in his house, which he doesn't like due to how he wants to look proffessional. But the wife insists on keeping them up, and during a party, everyone except the protagonist, searches the house to find more.", 500, 2), 93, "You project your fear of your partner not giving you enough time to write onto a character whose wife refuses to do what he wants.");
 proActions[4] = new StoryAction(new Story("Mrs. Sen's", "a young protagonist being babysat by an Indian housewife, who feels alone and refuses to drive or go into society.", 300, 4, 2), 90, "You project your fear of being an outsider, inspired by your childhood outside of India and constantly moving, onto a character in a short story.");
-proActions[5] = new StoryAction(new Story("The Rejected Dog", "a dog being left as a stray in India and ignored by everyone. This short story follows its travels.", 500, 0, 4), 15, "You project your fear of eternal loneliness onto a story about a rejected dog.");
+proActions[5] = new StoryAction(new Story("The Rejected Dog", "a dog being left as a stray in India and being ignored by everyone. This short story follows its travels.", 500, 0, 4), 15, "You project your fear of eternal loneliness onto a story about a rejected dog.");
 proActions[6] = new StoryAction(new Story("In Altre Parole", "an Indian love affair, but written originally in Italian.", 500, 2), 35, "You project your fear of intimacy onto a character in a love affair, but you also decide to write the book in Italian.");
 
 denActions[0] = new StoryAction(new Story("A Study on the Renaissance", "the renaissance, using research from your degree in it.", 500, 0, 3), 10, "You deny that anything's wrong and go on with life, writing about the renaissance.");
@@ -177,7 +180,6 @@ var exampleStory = {title: "Example Story", description: "a magical turtle who f
 //requirements: title, description, storyLength
 var writeStory = function(storyOb, customNarration) {
   customNarration = customNarration || "";
-  console.log(storyOb);
   clearTimeout(reminderStartTimeout);
   clearTimeout(reminderTimeout);
   clearTimeout(typingTalkTimeout);
@@ -223,14 +225,14 @@ var finishStory = function() {
       stage = "reading";
       clearTimeout(reminderTimeout);
       clearTimeout(reminderStartTimeout);
-      narrate("Ahh a favorite! \""+clickedStory.title+",\" about "+clickedStory.description+".", true, false);
+      narrate("Ahh a favorite! \""+clickedStory.title+",\" about "+clickedStory.description+"", true, false);
       setTimeout(function() {
         setStage("hanging");
       }, 5000);
     }
   });
 
-  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"!<br><br>It's about "+currStory.description+"", true, false);
+  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"!<br>It receives "+currStory.rating+"/5 stars.<br><br>It's about "+currStory.description+"", true, false);
   setTimeout(function() {
     setStage("hanging");
   }, (4000 + currStory.description.length/60*1000));
@@ -323,20 +325,19 @@ var endGame = function() {
   var minuteDiff = Math.ceil(timeDiff / (1000 * 60)) % 60;
   $("#timing").html("You finished <i>Interpreter of Maladies</i> in "+yearDiff+" years, "+dayDiff+" days, "+hourDiff+" hours, and "+minuteDiff+" minutes.");
   $("#book-prev, #message, #end-game-outer").removeClass("hidden");
-  var reviews = [new Review("You should make this book into a movie!", "Franklin Russel"),
-                new Review("Jhumpa Lahiri's first collection of short stories is a bit like a buffet table - lots of variety with a few recurring themes and motifs.", "Shankar Vedantam"),
-                new Review("No explanation is provided to justify the unlikely behavior. Good narrative demands that we be pulled along into an imaginary world, where characters act in interesting but consistent ways. A misplaced phrase or action jerks us out of the trance into wary suspicion.", "Shankar Vedantam"),
-                new Review("idk placeholder placeholder", "placeholder man"),
-                new Review("idk more placeholder", "placeholder man"),
-                new Review("placeholder placeholder", "placeholder man"),
-                new Review("noah put stuff here", "placeholder man"),
-                new Review("i'm pretty sexy tbh", "hi", "Sexy"),
-                new Review("ayy wife u shuld drive", "mr. sen", "Mrs. Sen's"),
-                new Review("r u a fake durwan", "ur mom", "A Real Durwan"),
-                new Review("my love for IoM is permanent", "me", "A Temporary Matter"),
-                new Review("ill bless u", "me", "This Blessed House"),
-                new Review("ill dine at ur places", "me", "When Mr. Pirzada Came to Dine"),
-                new Review("i wouldnt treat u like bib haldar", "me", "The Treatment of Bibi Haldar")];
+  var reviews = [new Review("The books should be a movie!", "Frank Franklin"),
+                new Review("<i>Interpreter of Maladies</i> had me furiously turning the pages", "Edward Scott"),
+                new Review("The collection of short stories had some hits and some misses, but mostly hits.", "Justin	Reed"),
+                new Review("I was very impressed by the collection of short stories.", "Gary Williams"),
+                new Review("Jhumpa Lahiri must of worked hard! I wonder why there was so much marriage in it though.", "Brian Edwards"),
+                new Review("The other stories were fantastic, but there was way too much about cooking.", "Greg	Malone", "Rice"),
+                new Review("Why can't she just talk English? I don't want to learn Italian!", "Ruby	Nelson", "Teach Yourself Italian"),
+                new Review("I don't care about the Renaissance. It would have been excellent if Lahiri wrote more fiction, which she is actually good at.", "Phillip Adams", "A Study on the Renaissance"),
+                new Review("my love for IoM is permanent", "Melissa	Robinson", "A Temporary Matter"),
+                new Review("I'm not Christian, but \"This Blessed House\" was an awesome story!", "Clarence	Phillips", "This Blessed House"),
+                new Review("I really related to Mr. Pirzada. ", "Mildred Johnson", "When Mr. Pirzada Came to Dine"),
+                new Review("Why does Jhumpa talk so much about dogs?", "Steve Russel", "The Dog of Death"),
+                new Review("Interpreter of Maladies was great, but what was with all the dogs?", "Brenda Morgan", "The Rejected Dog")];
   var goodReviews = [];
   while(goodReviews.length <= 5) {
     var potentialIndex = Math.floor(Math.random()*reviews.length);
@@ -396,7 +397,6 @@ var choiceTiming = function(choice) {
         break;
     }
     if(choiceActions.length === 1) {
-      console.log(choice.substr(0, 3));
       $("#"+choice.substr(0, 3)+"-button").addClass("disabled");
     }
 
@@ -471,7 +471,6 @@ $(document).ready(function() {
 
         lettersLeft--;
         stress = Math.floor((lettersLeft/currStory.storyLength)*prevStress);
-        console.log(stress);
         $("#typing-meter-overlay").css("width", lettersLeft/currStory.storyLength*100+"%");
         if(lettersLeft <= 0) {
           finishStory();
