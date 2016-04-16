@@ -282,7 +282,7 @@ body {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(175, 175, 175);
   pointer-events: auto;
   cursor: pointer;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
@@ -297,17 +297,17 @@ body {
 }
 
 .option-button.disabled {
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(200, 200, 200);
   box-shadow: 0;
   pointer-events: none;
 }
 
 .option-button:hover {
-  background-color: rgb(175, 175, 175);
+  background-color: rgb(150, 150, 150);
 }
 
 .option-button:active {
-  background-color: rgb(150, 150, 150);
+  background-color: rgb(100, 100, 100);
 }
 
 .option-button > p {
@@ -474,6 +474,7 @@ body {
 #start-game-outer > div > p {
   font-size: 2vw;
   font-weight: 300;
+  text-align: left;
 }
 
 #start-game-outer > div > hr {
@@ -481,7 +482,7 @@ body {
   height: 1px;
   outline: 0;
   border: 0;
-  width: 70%;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
