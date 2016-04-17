@@ -297,7 +297,7 @@ var setStage = function(whatStage) {
     }, 5000);
   }
   if(whatStage === "stress") {
-    narrate("Uh oh! For some reason a core issue about your fears of marriage is beginning to return from your subconcious<br>Quick! Choose a way to repress it again!", true, true);
+    narrate("Uh oh! For some reason a core issue about your fears of marriage is beginning to return from your subconcious<br>Choose a way to repress it again, but not too quick!", true, true);
     stage = "stress";
   }
 };
