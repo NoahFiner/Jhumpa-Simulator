@@ -328,15 +328,18 @@ body {
 }
 
 #brain-outer {
-  line-height: 20vw
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 #jhumpa-brain {
-  position: absolute;
-  top: 0;
+  display: inline-block;
   height: auto;
   width: 45%;
-  left: 2.5%;
+  margin-right: 20px;
+  margin-left: -20px;
   transform: rotate(0deg);
 }
 
@@ -357,9 +360,8 @@ body {
 }
 
 #anxiety-meter-outer {
-  top: calc(50% - 10px);
   width: 45%;
-  left: 50%;
+  display: inline-block;
 }
 
 #typing-meter-outer {
