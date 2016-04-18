@@ -274,6 +274,13 @@ body {
   margin-right: auto;
 }
 
+#intro-footer {
+  display: block;
+  text-align: right !important;
+  font-size: 20px !important;
+  color: #aaa !important;
+}
+
 .option-button {
   margin-top: 0px;
   opacity: 1;
@@ -410,17 +417,27 @@ body {
   margin-top: -10vh;
 }
 
+#narration > strong {
+  font-weight: 500 !important;
+  font-size: 20px !important;
+}
+
+#speech-bubble p {
+  font-size: 15px;
+}
 
 #speech-bubble {
-  padding: 5px;
+  padding: 10px;
   background-color: white;
-  height: 100px;
-  width: 200px;
+  height: 75px;
+  width: 150px;
   position: absolute;
-  top: 35px;
+  display: flex;
+  align-items: center;
+  top: 30px;
   left: 385px;
   opacity: 1;
-  transform: rotate(-20deg);
+  transform: rotate(-30deg);
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.4);
   transition: opacity 0.25s, top 0.25s;
 }
@@ -432,8 +449,8 @@ body {
 
 #speech-bubble-triangle {
   position: absolute;
-  left: 125px;
-  top: 100px;
+  left: 105px;
+  top: 80px;
   width: 0;
   height: 0;
   border-style: solid;

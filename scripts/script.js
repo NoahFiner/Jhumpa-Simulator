@@ -24,7 +24,8 @@ var playTimeInterval = setInterval(function() {
 }, 60000);
 
 //a bunch of global timeouts
-var reminderTimeout, reminderStartTimeout, talkTimeout, typingTalkTimeout;
+var reminderTimeout, reminderStartTimeout, talkTimeout, typingTalkTimeout, storyNarrTimeout;
+var resetNarr = true;
 
 var mainInterval = setInterval(function() {
   //stress
@@ -100,18 +101,18 @@ var LoopAction = function(customNarration, image, time, rank) {
   };
 };
 
-proActions[0] = new StoryAction(new Story("A Temporary Matter", "an Indian couple, separated by the death of their child, getting together by telling secrets until everything falls apart.", 250, 2), 95, "You project your fear of losing a loved one if you become too attached, inspired by your ignorant parents, onto characters in one of your short stories who lose a child and have a fear of intimacy.");
+proActions[0] = new StoryAction(new Story("A Temporary Matter", "an Indian couple, separated by the death of their child, getting together by telling secrets until everything falls apart.", 250, 5, 2), 95, "You project your fear of losing a loved one if you become too attached, inspired by your ignorant parents, onto characters in one of your short stories who lose a child and have a fear of intimacy.");
 proActions[1] = new StoryAction(new Story("When Mr. Pirzada Came to Dine", "Mr. Pirzada, a Pakistani, visiting the young protagonist's house to hope that the rest of his family, stuck in Pakistan, are okay.", 300, 5, 2), 94, "You project your fear of losing your family, like your parents ignored you and you 'lost' them, onto a character almost loses his entire family.");
 proActions[2] = new StoryAction(new Story("Sexy", "a woman participating in an affair with another man who calls her 'sexy,' while her friend, at the same time, has a cousin going through a harsh divorce.", 300, 4, 2), 85, "You project your fear of intimacy, sparked by your parents ignoring you despite your love, onto a character in a short story.");
-proActions[3] = new StoryAction(new Story("This Blessed House", "a successful Indian man's wife finding dozens of Christian symbols in his house, which he doesn't like due to how he wants to look proffessional. But the wife insists on keeping them up, and during a party, everyone except the protagonist, searches the house to find more.", 500, 2), 93, "You project your fear of your partner not giving you enough time to write onto a character whose wife refuses to do what he wants.");
+proActions[3] = new StoryAction(new Story("This Blessed House", "a successful Indian man's wife finding dozens of Christian symbols in his house, which he doesn't like due to how he wants to look proffessional. But the wife insists on keeping them up, and during a party, everyone except the protagonist, searches the house to find more.", 500, 5, 2), 93, "You project your fear of your partner not giving you enough time to write onto a character whose wife refuses to do what he wants.");
 proActions[4] = new StoryAction(new Story("Mrs. Sen's", "a young protagonist being babysat by an Indian housewife, who feels alone and refuses to drive or go into society.", 300, 4, 2), 90, "You project your fear of being an outsider, inspired by your childhood outside of India and constantly moving, onto a character in a short story.");
 proActions[5] = new StoryAction(new Story("The Rejected Dog", "a dog being left as a stray in India and being ignored by everyone. This short story follows its travels.", 500, 0, 4), 15, "You project your fear of eternal loneliness onto a story about a rejected dog.");
-proActions[6] = new StoryAction(new Story("In Altre Parole", "an Indian love affair, but written originally in Italian.", 500, 2), 35, "You project your fear of intimacy onto a character in a love affair, but you also decide to write the book in Italian.");
+proActions[6] = new StoryAction(new Story("In Altre Parole", "an Indian love affair, but written originally in Italian.", 500, 1, 2), 35, "You project your fear of intimacy onto a character in a love affair, but you also decide to write the book in Italian.");
 
 denActions[0] = new StoryAction(new Story("A Study on the Renaissance", "the renaissance, using research from your degree in it.", 500, 0, 3), 10, "You deny that anything's wrong and go on with life, writing about the renaissance.");
-denActions[1] = new StoryAction(new Story("The U.S. Is Cool", "movement to the U.S. being really easy and fun, making you immediately feel right at home.", 250, 0, 2), 40, "You deny that you feel like an outsider and are nervous about marriage and write a story about America!");
-denActions[2] = new StoryAction(new Story("My Parents Are Cool", "your parents loving you and your environment seeming approachable as a child, which totally happened by the way!", 250, 0, 2), 60, "You deny your child traumas and ignorant parents and write a story about how cool they were!");
-denActions[3] = new StoryAction(new Story("How to Get Married", "marriage in the U.S. and what a dream wedding would look like.", 500, 0, 2), 50, "You deny that you're afraid of marriage and just write about how to get married.");
+denActions[1] = new StoryAction(new Story("The U.S. Is Cool", "movement to the U.S. being really easy and fun, making you immediately feel right at home.", 250, 2, 2), 40, "You deny that you feel like an outsider and are nervous about marriage and write a story about America!");
+denActions[2] = new StoryAction(new Story("My Parents Are Cool", "your parents loving you and your environment seeming approachable as a child, which totally happened by the way!", 250, 1, 2), 60, "You deny your child traumas and ignorant parents and write a story about how cool they were!");
+denActions[3] = new StoryAction(new Story("How to Get Married", "marriage in the U.S. and what a dream wedding would look like.", 500, 1, 2), 50, "You deny that you're afraid of marriage and just write about how to get married.");
 
 avoActions[0] = new StoryAction(new Story("Rice", "your father's stragies for cooking rice. Previously published in the New Yorker, why not put it in <i>Intepreter of Maladies</i>?", 500, 2), 10, "You avoid your fears of marriage and write about rice.");
 avoActions[1] = new StoryAction(new Story("The Long Way Home", "yourself learning how to cook Indian food by watching your parents as a child.", 400, 2, 10), 15, "You avoid your fears of marriage by writing about how you learned to cook food.");
@@ -119,7 +120,7 @@ avoActions[2] = new StoryAction(new Story("Teach Yourself Italian", "yourself le
 avoActions[3] = new LoopAction("You avoid your fears of marriage and go on a vacation.", "backgrounds/vacation.jpg", 90000, 50);
 avoActions[4] = new LoopAction("You avoid your fears of marriage and go eat some food.", "backgrounds/food.jpg", 1440, 75);
 avoActions[5] = new LoopAction("You avoid your fears of marriage by contemplating if you should just be a reporter again.", "backgrounds/contemplation.jpg", 45000, 20);
-avoActions[6] = new StoryAction(new Story("A Real Durwan", "a cleaning lady telling everyone very detailed but unrealistic stories, but being kicked out when she tells the truth about robbers.", 600, 1, 2), 95, "You avoid your fears of marriage by just writing a story about telling stories.");
+avoActions[6] = new StoryAction(new Story("A Real Durwan", "a cleaning lady telling everyone very detailed but unrealistic stories, but being kicked out when she tells the truth about robbers.", 600, 4, 2), 95, "You avoid your fears of marriage by just writing a story about telling stories.");
 
 disActions[0] = new StoryAction(new Story("The Treatment of Bibi Haldar", "Bibi Haldar, an ugly Indian single young lady, searching for a man who could marry her due to Indian pressures. She unfortunately fails.", 250, 5, 2), 85, "You displace your fears of marriage on Indian culture pressuring you too much.");
 disActions[1] = new StoryAction(new Story("The Third and Final Continent", "an Indian immigrant working at MIT and has a brief connection with his incredibly old landlord until his new wife arrives. When his wife arrives, though, it's very awkward.", 250, 5, 2), 95, "You displace your fears of marriage on Indian culture and your parents pressuring you too much.");
@@ -130,23 +131,25 @@ disActions[2] = new LoopAction("You displace your fears of marriage on your food
 
 
 var narrate = function(narration, textState, buttonState) {
-  $("#narration").html(narration);
-  if(textState) {
-    $("#narration").removeClass("hidden");
-  } else {
-    if(narration === "") {
-      $("#narration").html(prevNarr);
+  if(resetNarr) {
+    $("#narration").html(narration);
+    if(textState) {
+      $("#narration").removeClass("hidden");
+    } else {
+      if(narration === "") {
+        $("#narration").html(prevNarr);
+      }
+      $("#narration").addClass("hidden");
     }
-    $("#narration").addClass("hidden");
-  }
-  prevNarr = narration;
-  if(buttonState) {
-    $("#den-button").removeClass("hidden");
-    setTimeout(function() {$("#pro-button").removeClass("hidden");}, 250);
-    setTimeout(function() {$("#avo-button").removeClass("hidden");}, 500);
-    setTimeout(function() {$("#dis-button").removeClass("hidden");}, 750);
-  } else {
-    $("#den-button, #pro-button, #avo-button, #dis-button").addClass("hidden");
+    prevNarr = narration;
+    if(buttonState) {
+      $("#den-button").removeClass("hidden");
+      setTimeout(function() {$("#pro-button").removeClass("hidden");}, 250);
+      setTimeout(function() {$("#avo-button").removeClass("hidden");}, 500);
+      setTimeout(function() {$("#dis-button").removeClass("hidden");}, 750);
+    } else {
+      $("#den-button, #pro-button, #avo-button, #dis-button").addClass("hidden");
+    }
   }
 };
 
@@ -183,19 +186,23 @@ var writeStory = function(storyOb, customNarration) {
   clearTimeout(reminderStartTimeout);
   clearTimeout(reminderTimeout);
   clearTimeout(typingTalkTimeout);
+  clearTimeout(storyNarrTimeout);
   $("#typing-meter-overlay").css("width", "100%");
   stage = "typing";
   $("#typing-meter-outer").removeClass("hidden");
   currStory = storyOb;
   lettersLeft = storyOb.storyLength;
   if(customNarration === "") {
-    narrate("Genius! You'll write a story about "+storyOb.description+"<br>You'll call it \""+storyOb.title+"!\"", true, false);
+    narrate("<strong>Genius! You'll write a story about "+storyOb.description+"</strong><br>You'll call it \""+storyOb.title+"!\"", true, false);
   }
   else {
     narrate(customNarration, true, false);
   }
+  resetNarr = false;
+  storyNarrTimeout = setTimeout(function() {
+    resetNarr = true;
+  }, 5000);
 };
-
 var storyUsed = function(story) {
   for(i = 0; i < stories.length; i++) {
     if(stories[i].title === story) {
@@ -214,7 +221,9 @@ var finishStory = function() {
   $("#written-stories, #final-stories").append("<li class='story-li' id=\"story-"+stories.length+"\">\""+currStory.title+"\"</li>");
 
   if(stories.length >= 9) {
-    endGame();
+    setTimeout(function() {
+      endGame();
+    }, (3500 + currStory.description.length/60*1000));
   }
 
   //i have to put this here because jquery is stupid
@@ -232,7 +241,7 @@ var finishStory = function() {
     }
   });
 
-  narrate("Great work! You finish \""+currStory.title+",\" short story #"+stories.length+", in '"+writingTime.getYear()+"!<br>It receives "+currStory.rating+"/5 stars.<br><br>It's about "+currStory.description+"", true, false);
+  narrate("<strong>Great work! You finish \""+currStory.title+",\" short story #"+stories.length+"!</strong><br>It receives "+currStory.rating+"/5 stars.<br><br>It's about "+currStory.description+"", true, false);
   setTimeout(function() {
     setStage("hanging");
   }, (4000 + currStory.description.length/60*1000));
@@ -283,13 +292,13 @@ var setStage = function(whatStage) {
     }, 5000);
   }
   if(whatStage === "anxiety") {
-    narrate("WHAT WERE YOU THINKING? THE REPRESSED FEELINGS RETURNED!<br>ANXIETY ATTACK! AHAAAAAHAHAHAHAH!", true, false);
+    narrate("<strong>WHAT WERE YOU THINKING? THE REPRESSED FEELINGS RETURNED!</strong><br>ANXIETY ATTACK! AHAAAAAHAHAHAHAH!", true, false);
     stage = "anxiety";
     $("#jhumpa-brain").removeClass().addClass("stress5");
     $("#typing-jhumpa").addClass("anxiety");
     setTimeout(function() {
       addTime(20160*30);
-      narrate("You waste two months on your anxiety attack. This will probably affect your writing in the future.", true, false);
+      narrate("<strong>You waste two months on your anxiety attack.</strong><br>This will probably affect your writing in the future.", true, false);
       starsRemoved++;
     }, 2500);
     setTimeout(function() {
@@ -297,7 +306,7 @@ var setStage = function(whatStage) {
     }, 5000);
   }
   if(whatStage === "stress") {
-    narrate("Uh oh! For some reason a core issue about your fears of marriage is beginning to return from your subconcious<br>Choose a way to repress it again, but not too quick!", true, true);
+    narrate("<strong>Uh oh!</strong><br>For some reason a core issue about your fears of marriage is beginning to return from your subconcious.<br>Choose a way to repress it again, but not too quick!", true, true);
     stage = "stress";
   }
 };
@@ -326,17 +335,20 @@ var endGame = function() {
   $("#timing").html("You finished <i>Interpreter of Maladies</i> in "+yearDiff+" years, "+dayDiff+" days, "+hourDiff+" hours, and "+minuteDiff+" minutes.");
   $("#book-prev, #message, #end-game-outer").removeClass("hidden");
   var reviews = [new Review("The books should be a movie!", "Frank Franklin"),
-                new Review("<i>Interpreter of Maladies</i> had me furiously turning the pages", "Edward Scott"),
+                new Review("<i>Interpreter of Maladies</i> had me furiously turning its pages.", "Edward Scott"),
                 new Review("The collection of short stories had some hits and some misses, but mostly hits.", "Justin	Reed"),
                 new Review("I was very impressed by the collection of short stories.", "Gary Williams"),
-                new Review("Jhumpa Lahiri must of worked hard! I wonder why there was so much marriage in it though.", "Brian Edwards"),
+                new Review("Jhumpa Lahiri must have worked hard! I wonder why there was so much marriage in it though.", "Brian Edwards"),
                 new Review("The other stories were fantastic, but there was way too much about cooking.", "Greg	Malone", "Rice"),
-                new Review("Why can't she just talk English? I don't want to learn Italian!", "Ruby	Nelson", "Teach Yourself Italian"),
+                new Review("Why can't she just talk English? I don't want to learn Italian!", "Ruby	Nelson", "In Altre Parole"),
+                new Review("Why am I learning Italian?", "Clarisse Finklestein", "Teach Yourself Italian"),
                 new Review("I don't care about the Renaissance. It would have been excellent if Lahiri wrote more fiction, which she is actually good at.", "Phillip Adams", "A Study on the Renaissance"),
-                new Review("my love for IoM is permanent", "Melissa	Robinson", "A Temporary Matter"),
+                new Review("I don't want to learn about Lahiri's parents, just give me some fiction!", "Melissa	Robinson", "The Long Way Home"),
                 new Review("I'm not Christian, but \"This Blessed House\" was an awesome story!", "Clarence	Phillips", "This Blessed House"),
                 new Review("I really related to Mr. Pirzada. ", "Mildred Johnson", "When Mr. Pirzada Came to Dine"),
                 new Review("Why does Jhumpa talk so much about dogs?", "Steve Russel", "The Dog of Death"),
+                new Review("\"The Third and Final Continent\" really tugged with my emotions.", "Michael Goldwater", "The Third and Final Continent"),
+                new Review("\"How to Get Married\" was weird, especially since Lahiri wasn't married when she wrote it.", "Barry McDuffie", "The Third and Final Continent"),
                 new Review("Interpreter of Maladies was great, but what was with all the dogs?", "Brenda Morgan", "The Rejected Dog")];
   var goodReviews = [];
   while(goodReviews.length <= 5) {
@@ -368,15 +380,6 @@ var endGame = function() {
 var choiceTiming = function(choice) {
   if(stage === "stress") {
     var wastedMinutesMultiplier = 1;
-    // if(stress >= 0 && stress <= 50) {
-    //   narrate("You "+choice+" your core issues. Unfortunately, you wasted a lot of energy and time.", true, false);
-    // } else if(stress > 50 && stress <= 75) {
-    //   narrate("You "+choice+" your core issues. Unfortunately, you wasted a good bit of energy and time.", true, false);
-    // } else if(stress > 75 && stress <= 85) {
-    //   narrate("You "+choice+" your core issues, right on time!", true, false);
-    // } else if(stress > 75 && stress <= 99) {
-    //   narrate("You "+choice+" your core issues, but pretty late, taking up extra energy and time.", true, false);
-    // } else {
     if(stress > 99) {
       setStage("anxiety");
       return;
@@ -454,7 +457,7 @@ $(document).ready(function() {
       }, 5000);
       if(stage === "typing") {
         //also some fun narration
-        if(Math.random() < 0.01) {
+        if((lettersLeft % 200) === 42) {
           clearTimeout(typingTalkTimeout);
           typingTalkTimeout = setTimeout(function() {
             talk("", false);
@@ -465,6 +468,9 @@ $(document).ready(function() {
                             "Gotta type fast!",
                             "I've been inspired and I feel fantastic!",
                             "The ideas are coming too quickly! Type faster!",
+                            "I am writing the best short story in existance!",
+                            "This is certain to get incredible ratings.",
+                            "My mind is going to explode with all of these ideas! I must write them down!",
                             "I will be known as the fastest typer in town!"];
           talk(typingTalks[Math.floor(Math.random()*typingTalks.length)], true);
         }
