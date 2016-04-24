@@ -101,19 +101,18 @@ var LoopAction = function(customNarration, image, time, rank) {
   };
 };
 
-proActions[0] = new StoryAction(new Story("A Temporary Matter", "an Indian couple, separated by the death of their child, getting together by telling secrets until everything falls apart.", 250, 5, 2), 95, "You project your fear of losing a loved one if you become too attached, inspired by your ignorant parents, onto characters in one of your short stories who lose a child and have a fear of intimacy.");
-proActions[1] = new StoryAction(new Story("When Mr. Pirzada Came to Dine", "Mr. Pirzada, a Pakistani, visiting the young protagonist's house to hope that the rest of his family, stuck in Pakistan, are okay.", 300, 5, 2), 94, "You project your fear of losing your family, like your parents ignored you and you 'lost' them, onto a character almost loses his entire family.");
-proActions[2] = new StoryAction(new Story("Sexy", "a woman participating in an affair with another man who calls her 'sexy,' while her friend, at the same time, has a cousin going through a harsh divorce.", 300, 4, 2), 85, "You project your fear of intimacy, sparked by your parents ignoring you despite your love, onto a character in a short story.");
-proActions[3] = new StoryAction(new Story("This Blessed House", "a successful Indian man's wife finding dozens of Christian symbols in his house, which he doesn't like due to how he wants to look proffessional. But the wife insists on keeping them up, and during a party, everyone except the protagonist, searches the house to find more.", 500, 5, 2), 93, "You project your fear of your partner not giving you enough time to write onto a character whose wife refuses to do what he wants.");
+proActions[0] = new StoryAction(new Story("A Temporary Matter", "an Indian couple, separated by the death of their child, getting together by telling secrets until everything falls apart.", 250, 5, 2), 95, "You project your fear of intimacy as that loved one can die, sparked by your parents not being intimate with you, onto characters in one of your short stories who lose a child and have a fear of intimacy.");
+proActions[1] = new StoryAction(new Story("When Mr. Pirzada Came to Dine", "Mr. Pirzada, a Pakistani, visiting the young protagonist's house to hope that the rest of his family, stuck in Pakistan, are okay.", 300, 5, 2), 94, "You project your fear of intimacy, as you can be intimate with someone and then lose them onto a character who almost loses his entire family. This fear of intimacy was sparked by your parents who were never intimate with you.");
+proActions[2] = new StoryAction(new Story("Sexy", "a woman participating in an affair with another man who calls her 'sexy,' while her friend, at the same time, has a cousin going through a harsh divorce.", 300, 4, 2), 85, "You project your fear of intimacy, sparked by your parents lack of intimacy with you as a child, onto a character in a short story having an affair.");
+proActions[3] = new StoryAction(new Story("This Blessed House", "a successful Indian man's wife finding dozens of Christian symbols in his house, which he doesn't like due to how he wants to look professional. But the wife insists on keeping them up, and during a party, everyone except the protagonist, searches the house to find more.", 500, 5, 2), 93, "You project your fear of your partner not giving you enough time to write onto a character whose wife refuses to do what he wants.");
 proActions[4] = new StoryAction(new Story("Mrs. Sen's", "a young protagonist being babysat by an Indian housewife, who feels alone and refuses to drive or go into society.", 300, 4, 2), 90, "You project your fear of being an outsider, inspired by your childhood outside of India and constantly moving, onto a character in a short story.");
 proActions[5] = new StoryAction(new Story("The Rejected Dog", "a dog being left as a stray in India and being ignored by everyone. This short story follows its travels.", 500, 0, 4), 15, "You project your fear of eternal loneliness onto a story about a rejected dog.");
 proActions[6] = new StoryAction(new Story("In Altre Parole", "an Indian love affair, but written originally in Italian.", 500, 1, 2), 35, "You project your fear of intimacy onto a character in a love affair, but you also decide to write the book in Italian.");
-proActions[7] = new StoryAction(new Story("Interpreter of Maladies", "a tour guide falling in love with one of his Indian customers who takes interest in his job of intepreting patients' maladies.", 250, 5, 2), 97, "You project your fear of your husband not loving you, like your parents who didn't love you as much as you would have liked.");
+proActions[7] = new StoryAction(new Story("Interpreter of Maladies", "a tour guide falling in love with one of his Indian customers who takes interest in his job of intepreting patients' maladies.", 250, 5, 2), 97, "You project your fear of your husband not appreciating your profession.");
 
 denActions[0] = new StoryAction(new Story("A Study on the Renaissance", "the renaissance, using research from your degree in it.", 500, 0, 3), 10, "You deny that anything's wrong and go on with life, writing about the renaissance.");
-denActions[1] = new StoryAction(new Story("The U.S. Is Cool", "moveming to the U.S. being really easy and fun, making you immediately feel right at home.", 250, 2, 2), 40, "You deny that you feel like an outsider and are nervous about marriage and write a story about America!");
-denActions[2] = new StoryAction(new Story("My Parents Are Cool", "your parents loving you and your environment seeming approachable as a child, which totally happened by the way!", 250, 1, 2), 60, "You deny your child traumas and ignorant parents and write a story about how cool they were!");
-denActions[3] = new StoryAction(new Story("How to Get Married", "marriage in the U.S. and what a dream wedding would look like.", 500, 1, 2), 50, "You deny that you're afraid of marriage and just write about how to get married.");
+denActions[1] = new StoryAction(new Story("The U.S. Is Cool", "moveming to the U.S. being really easy and fun, making you immediately feel right at home.", 250, 2, 2), 40, "You deny that you feel or ever felt like an outsider and write a story about how comforting the U.S. was.");
+denActions[2] = new StoryAction(new Story("How to Get Married", "marriage in the U.S. and what a dream wedding would look like.", 500, 1, 2), 50, "You deny that you're afraid of marriage and just write about how to get married.");
 
 avoActions[0] = new StoryAction(new Story("Rice", "your father's stragies for cooking rice. Previously published in the New Yorker, why not put it in <i>Intepreter of Maladies</i>?", 500, 2), 10, "You avoid your fears of marriage and write about rice.");
 avoActions[1] = new StoryAction(new Story("The Long Way Home", "yourself learning how to cook Indian food by watching your parents as a child.", 400, 2, 10), 15, "You avoid your fears of marriage by writing about how you learned to cook food.");
@@ -121,13 +120,13 @@ avoActions[2] = new StoryAction(new Story("Teach Yourself Italian", "yourself le
 avoActions[3] = new LoopAction("You avoid your fears of marriage and go on a vacation.", "backgrounds/vacation.jpg", 90000, 50);
 avoActions[4] = new LoopAction("You avoid your fears of marriage and go eat some food.", "backgrounds/food.jpg", 1440, 75);
 avoActions[5] = new LoopAction("You avoid your fears of marriage by contemplating if you should just be a reporter again.", "backgrounds/contemplation.jpg", 45000, 20);
-avoActions[6] = new StoryAction(new Story("A Real Durwan", "a cleaning lady telling everyone very detailed but unrealistic stories, but being kicked out when she tells the truth about robbers.", 600, 4, 2), 95, "You avoid your fears of marriage by just writing a story about telling stories.");
+avoActions[6] = new StoryAction(new Story("A Real Durwan", "a cleaning lady telling everyone very detailed but unrealistic stories, but being kicked out when she tells the truth about robbers.", 600, 4, 2), 95, "You avoid your fears of marriage by writing a short story with no marital problems in it.");
 
 disActions[0] = new StoryAction(new Story("The Treatment of Bibi Haldar", "Bibi Haldar, an ugly Indian single young lady, searching for a man who could marry her due to Indian pressures. She unfortunately fails.", 250, 5, 2), 85, "You displace your fears of marriage on Indian culture pressuring you too much.");
 disActions[1] = new StoryAction(new Story("The Third and Final Continent", "an Indian immigrant working at MIT and has a brief connection with his incredibly old landlord until his new wife arrives. When his wife arrives, though, it's very awkward, but eventually they grow together and become a happy couple.", 250, 5, 2), 95, "You displace your fears of marriage on Indian culture and your parents pressuring you too much.");
-disActions[4] = new StoryAction(new Story("The Dog of Death", "people that have far too strong emotional connections to their dogs and how they manipulate their real emotions and feelings toward loved ones.", 500, 1, 10), 40, "You displace your fears of marriage on your dog.");
+disActions[4] = new StoryAction(new Story("The Dog of Death", "people that have far too strong emotional connections to their dogs and how they manipulate their real emotions and feelings toward loved ones.", 500, 1, 10), 40, "You displace your fears of marriage and blame dogs for ruining relationships for some reason.");
 disActions[3] = new LoopAction("You displace your fears of marriage and blame your current boyfriend for making you not want to do marriage. You fight with him for a little.", "backgrounds/boyfriend.jpg", 20000, 30);
-disActions[4] = new LoopAction("You displace your fears of marriage and blame your parents for not caring enough for you. You call them for a few days.", "backgrounds/parents.jpg", 100000, 20);
+disActions[5] = new LoopAction("You displace your fears of marriage and blame your parents for not caring enough for you. You call them for a few days.", "backgrounds/parents.jpg", 100000, 20);
 disActions[2] = new LoopAction("You displace your fears of marriage on your food for some reason.", "backgrounds/food.jpg", 100000, 5);
 
 
@@ -335,18 +334,17 @@ var endGame = function() {
   var minuteDiff = Math.ceil(timeDiff / (1000 * 60)) % 60;
   $("#timing").html("You finished <i>Interpreter of Maladies</i> in "+yearDiff+" years, "+dayDiff+" days, "+hourDiff+" hours, and "+minuteDiff+" minutes.");
   $("#book-prev, #message, #end-game-outer").removeClass("hidden");
-  var reviews = [new Review("The books should be a movie!", "Frank Franklin"),
-                new Review("<i>Interpreter of Maladies</i> had me furiously turning its pages.", "Edward Scott"),
+  var reviews = [new Review("These books should be made into a movie!", "Frank Franklin"),
+                new Review("<i>Interpreter of Maladies</i> had me furiously turning every page.", "Edward Scott"),
                 new Review("The collection of short stories had some hits and some misses, but mostly hits.", "Justin	Reed"),
-                new Review("I was very impressed by the collection of short stories.", "Gary Williams"),
-                new Review("Jhumpa Lahiri must have worked hard! I wonder why there was so much marriage in it though.", "Brian Edwards"),
+                new Review("I was very impressed by this collection of short stories.", "Gary Williams"),
+                new Review("Jhumpa Lahiri must have worked hard! I wonder why there was so many marital problems in it though.", "Brian Edwards"),
                 new Review("The other stories were fantastic, but there was way too much about cooking.", "Greg	Malone", "Rice"),
-                new Review("Why can't she just talk English? I don't want to learn Italian!", "Ruby	Nelson", "In Altre Parole"),
-                new Review("Why am I learning Italian?", "Clarisse Finklestein", "Teach Yourself Italian"),
+                new Review("Why can't she just talk in English? I don't want to learn Italian! And why is \"In Altre Parole\" the only story in Italian?", "Ruby	Nelson", "In Altre Parole"),
+                new Review("Why do I want to learn Italian in a collection of short stories about being an outsider?", "Clarisse Finklestein", "Teach Yourself Italian"),
                 new Review("I don't care about the Renaissance. It would have been excellent if Lahiri wrote more fiction, which she is actually good at.", "Phillip Adams", "A Study on the Renaissance"),
                 new Review("I don't want to learn about Lahiri's parents, just give me some fiction!", "Melissa	Robinson", "The Long Way Home"),
                 new Review("I'm not Christian, but \"This Blessed House\" was an awesome story!", "Clarence	Phillips", "This Blessed House"),
-                new Review("I really related to Mr. Pirzada. ", "Mildred Johnson", "When Mr. Pirzada Came to Dine"),
                 new Review("Why does Jhumpa talk so much about dogs?", "Steve Russel", "The Dog of Death"),
                 new Review("\"The Third and Final Continent\" really tugged with my emotions.", "Michael Goldwater", "The Third and Final Continent"),
                 new Review("\"How to Get Married\" was weird, especially since Lahiri wasn't married when she wrote it.", "Barry McDuffie", "The Third and Final Continent"),
@@ -491,3 +489,9 @@ $(document).ready(function() {
     }
   });
 });
+
+
+
+
+
+//ayy lmao i got 500 lines now
