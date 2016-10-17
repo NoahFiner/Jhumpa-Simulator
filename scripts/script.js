@@ -489,9 +489,3 @@ $(document).ready(function() {
     }
   });
 });
-
-
-
-
-
-//ayy lmao i got 500 lines now
